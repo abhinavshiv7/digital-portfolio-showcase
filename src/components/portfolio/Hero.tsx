@@ -19,10 +19,10 @@ export const Hero = () => {
         <div className="space-y-4">
           <p className="text-primary font-semibold text-lg tracking-wide">Hello, I'm</p>
           <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-            Computer Science Student
+            Abhinav
           </h1>
           <p className="text-xl md:text-2xl text-muted-foreground max-w-2xl mx-auto">
-            Passionate about building innovative solutions and creating impactful technology
+            Cloud Engineering Student | Kubernetes • Terraform • GCP
           </p>
         </div>
 
@@ -46,7 +46,7 @@ export const Hero = () => {
 
         <div className="flex gap-6 justify-center pt-8">
           <a 
-            href="https://github.com" 
+            href="https://github.com/abhinavshiv7" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-foreground hover:text-primary transition-colors"
@@ -54,7 +54,7 @@ export const Hero = () => {
             <Github className="h-6 w-6" />
           </a>
           <a 
-            href="https://linkedin.com" 
+            href="https://linkedin.com/in/abhi-shiv" 
             target="_blank" 
             rel="noopener noreferrer"
             className="text-foreground hover:text-primary transition-colors"
@@ -62,7 +62,7 @@ export const Hero = () => {
             <Linkedin className="h-6 w-6" />
           </a>
           <a 
-            href="mailto:contact@example.com"
+            href="mailto:abhinav.shiv7@gmail.com"
             className="text-foreground hover:text-primary transition-colors"
           >
             <Mail className="h-6 w-6" />

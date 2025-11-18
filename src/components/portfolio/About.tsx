@@ -31,14 +31,15 @@ export const About = () => {
         <div className="grid md:grid-cols-2 gap-12 items-center mb-12">
           <div className="space-y-6 animate-fade-in-left">
             <p className="text-lg text-muted-foreground leading-relaxed">
-              I'm a passionate Computer Science student dedicated to crafting innovative solutions 
-              that make a real-world impact. My journey in technology is driven by curiosity and 
-              a commitment to continuous learning.
+              I'm a Cloud Engineering student specializing in AWS, Azure, and GCP. With hands-on 
+              experience in Docker, Kubernetes, Terraform, and CI/CD pipelines, I'm passionate 
+              about building scalable infrastructure solutions and automation.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              With a strong foundation in software development and a keen interest in emerging 
-              technologies, I strive to bridge the gap between theory and practical application. 
-              Every project is an opportunity to push boundaries and create something meaningful.
+              Currently pursuing cloud certifications while gaining practical DevOps experience, 
+              I seek opportunities to contribute my technical skills to innovative cloud projects 
+              and grow as a cloud professional. Every challenge is an opportunity to learn and 
+              create impactful solutions.
             </p>
           </div>
 

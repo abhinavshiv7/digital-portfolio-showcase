@@ -1,37 +1,37 @@
 import { Card } from "@/components/ui/card";
-import { Code2, Database, FileCode2, GitBranch, Laptop, Terminal } from "lucide-react";
+import { Cloud, Container, Database, GitBranch, Server, Terminal } from "lucide-react";
 
 export const Tools = () => {
   const tools = [
     {
-      icon: GitBranch,
-      name: "Version Control",
-      items: ["Git", "GitHub", "GitLab"]
+      icon: Cloud,
+      name: "Cloud Platforms",
+      items: ["Google Cloud Platform", "AWS", "Azure"]
     },
     {
-      icon: Terminal,
-      name: "Development",
-      items: ["VS Code", "IntelliJ IDEA", "Vim"]
+      icon: Container,
+      name: "Container & Orchestration",
+      items: ["Docker", "Kubernetes", "Docker Compose"]
+    },
+    {
+      icon: Server,
+      name: "Infrastructure as Code",
+      items: ["Terraform", "CloudFormation", "Ansible"]
+    },
+    {
+      icon: GitBranch,
+      name: "Version Control & CI/CD",
+      items: ["Git", "GitHub Actions", "Jenkins"]
     },
     {
       icon: Database,
       name: "Databases",
-      items: ["PostgreSQL", "MongoDB", "Redis"]
+      items: ["Oracle SQL", "MongoDB", "PostgreSQL"]
     },
     {
-      icon: FileCode2,
-      name: "Frameworks",
-      items: ["React", "Next.js", "Express"]
-    },
-    {
-      icon: Laptop,
-      name: "Design",
-      items: ["Figma", "Adobe XD", "Canva"]
-    },
-    {
-      icon: Code2,
-      name: "Testing",
-      items: ["Jest", "Cypress", "Postman"]
+      icon: Terminal,
+      name: "Development Tools",
+      items: ["VS Code", "IntelliJ IDEA", "Power BI"]
     }
   ];
 

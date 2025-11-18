@@ -21,12 +21,10 @@ export const Education = () => {
 
             <div className="flex-1 space-y-6">
               <div>
-                <h3 className="text-2xl font-bold mb-2">Bachelor of Science in Computer Science</h3>
-                <p className="text-primary font-semibold text-lg">University Name</p>
-                <p className="text-muted-foreground">Expected Graduation: May 2025</p>
-                <div className="mt-2">
-                  <Badge variant="secondary" className="text-sm">GPA: 3.8/4.0</Badge>
-                </div>
+                <h3 className="text-2xl font-bold mb-2">Bachelor of Technology in Computer Science & Engineering</h3>
+                <p className="text-primary font-semibold text-lg">Lovely Professional University</p>
+                <p className="text-muted-foreground">Expected Graduation: July 2027</p>
+                <p className="text-muted-foreground mt-1">Specialization: Cloud Engineering</p>
               </div>
 
               <div>
@@ -36,14 +34,14 @@ export const Education = () => {
                 </h4>
                 <div className="flex flex-wrap gap-2">
                   {[
+                    "Cloud Computing",
                     "Data Structures & Algorithms",
-                    "Web Development",
                     "Database Systems",
-                    "Machine Learning",
-                    "Software Engineering",
-                    "Computer Networks",
                     "Operating Systems",
-                    "Artificial Intelligence"
+                    "Computer Networks",
+                    "Software Engineering",
+                    "Web Development",
+                    "Machine Learning"
                   ].map((course, index) => (
                     <Badge key={index} variant="outline">
                       {course}
@@ -55,13 +53,13 @@ export const Education = () => {
               <div>
                 <h4 className="font-semibold text-lg mb-3 flex items-center gap-2">
                   <Award className="h-5 w-5 text-primary" />
-                  Honors & Awards
+                  Academic Focus
                 </h4>
                 <ul className="space-y-2 text-muted-foreground">
-                  <li>• Dean's List - All Semesters</li>
-                  <li>• Computer Science Department Scholarship</li>
-                  <li>• Winner, University Hackathon 2024</li>
-                  <li>• President, Computer Science Student Association</li>
+                  <li>• Specializing in Cloud Engineering & DevOps</li>
+                  <li>• Active participant in cloud computing workshops</li>
+                  <li>• Building hands-on experience with container orchestration</li>
+                  <li>• Pursuing advanced cloud certifications</li>
                 </ul>
               </div>
             </div>
