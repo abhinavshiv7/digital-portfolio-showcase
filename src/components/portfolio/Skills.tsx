@@ -6,28 +6,44 @@ export const Skills = () => {
     {
       category: "Programming Languages",
       skills: [
-        { name: "JavaScript/TypeScript", level: 90 },
-        { name: "Python", level: 85 },
-        { name: "Java", level: 80 },
-        { name: "C++", level: 75 }
+        { name: "Python", level: 88 },
+        { name: "JavaScript", level: 85 },
+        { name: "Java", level: 82 },
+        { name: "C++", level: 80 }
       ]
     },
     {
-      category: "Web Development",
+      category: "Cloud & DevOps",
       skills: [
-        { name: "React/Next.js", level: 92 },
-        { name: "Node.js", level: 88 },
-        { name: "HTML/CSS", level: 95 },
-        { name: "Tailwind CSS", level: 90 }
+        { name: "Docker", level: 85 },
+        { name: "Kubernetes", level: 82 },
+        { name: "Terraform", level: 80 },
+        { name: "CI/CD Pipelines", level: 78 }
       ]
     },
     {
-      category: "Database & Backend",
+      category: "Cloud Platforms",
       skills: [
-        { name: "SQL/PostgreSQL", level: 82 },
-        { name: "MongoDB", level: 80 },
-        { name: "Firebase", level: 85 },
-        { name: "REST APIs", level: 88 }
+        { name: "Google Cloud Platform", level: 85 },
+        { name: "AWS", level: 80 },
+        { name: "Azure", level: 75 }
+      ]
+    },
+    {
+      category: "Web & Databases",
+      skills: [
+        { name: "HTML/CSS/Tailwind", level: 88 },
+        { name: "Node.js", level: 82 },
+        { name: "Oracle SQL", level: 80 },
+        { name: "MongoDB", level: 78 }
+      ]
+    },
+    {
+      category: "Data & Analytics",
+      skills: [
+        { name: "Pandas", level: 85 },
+        { name: "NumPy", level: 83 },
+        { name: "Power BI", level: 80 }
       ]
     }
   ];
@@ -40,7 +56,7 @@ export const Skills = () => {
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillCategories.map((category, categoryIndex) => (
             <Card 
               key={categoryIndex}

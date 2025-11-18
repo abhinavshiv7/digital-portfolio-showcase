@@ -6,28 +6,20 @@ import { ExternalLink, Github } from "lucide-react";
 export const Projects = () => {
   const projects = [
     {
-      title: "AI-Powered Task Manager",
-      description: "A smart task management system with AI-driven priority suggestions and deadline predictions",
-      tags: ["React", "TypeScript", "Machine Learning", "Firebase"],
-      image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&auto=format&fit=crop",
-      github: "https://github.com",
-      demo: "https://example.com"
+      title: "FitLife Planner & AI Assistant",
+      description: "AI-powered health application delivering personalized fitness plans and real-time health tips using Natural Language Processing",
+      tags: ["Python", "NLP", "AI/ML", "Health Tech"],
+      image: "https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800&auto=format&fit=crop",
+      github: "https://github.com/abhinavshiv7/FitLife-Planner",
+      demo: "https://github.com/abhinavshiv7/FitLife-Planner"
     },
     {
-      title: "E-Commerce Platform",
-      description: "Full-stack e-commerce solution with payment integration and real-time inventory management",
-      tags: ["Next.js", "Node.js", "PostgreSQL", "Stripe"],
-      image: "https://images.unsplash.com/photo-1557821552-17105176677c?w=800&auto=format&fit=crop",
-      github: "https://github.com",
-      demo: "https://example.com"
-    },
-    {
-      title: "Social Media Analytics Dashboard",
-      description: "Real-time analytics dashboard for tracking social media engagement and performance metrics",
-      tags: ["Vue.js", "Python", "D3.js", "MongoDB"],
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&auto=format&fit=crop",
-      github: "https://github.com",
-      demo: "https://example.com"
+      title: "Smart Directory Manager",
+      description: "Python-based automation tool for intelligent file organization with command-line interface for efficient directory management",
+      tags: ["Python", "Automation", "CLI", "File Management"],
+      image: "https://images.unsplash.com/photo-1544396821-4dd40b938ad3?w=800&auto=format&fit=crop",
+      github: "https://github.com/abhinavshiv7/Smart_Directory_Manager",
+      demo: "https://github.com/abhinavshiv7/Smart_Directory_Manager"
     }
   ];
 
@@ -42,7 +34,7 @@ export const Projects = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
           {projects.map((project, index) => (
             <Card 
               key={index} 

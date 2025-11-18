@@ -69,8 +69,8 @@ export const Contact = () => {
   };
 
   const handleWhatsAppClick = () => {
-    const phone = "1234567890"; // Replace with actual WhatsApp number
-    const message = encodeURIComponent("Hi! I found your portfolio and would like to connect.");
+    const phone = "919341494320";
+    const message = encodeURIComponent("Hi Abhinav! I found your portfolio and would like to connect.");
     window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
   };
 
@@ -178,8 +178,8 @@ export const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-1">Email</h3>
-                  <a href="mailto:contact@example.com" className="text-muted-foreground hover:text-primary transition-colors">
-                    contact@example.com
+                  <a href="mailto:abhinav.shiv7@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                    abhinav.shiv7@gmail.com
                   </a>
                 </div>
               </div>
@@ -210,7 +210,7 @@ export const Contact = () => {
                 <div>
                   <h3 className="font-semibold text-lg mb-1">Location</h3>
                   <p className="text-muted-foreground">
-                    Available for remote opportunities worldwide
+                    Phagwara, Punjab, India
                   </p>
                 </div>
               </div>
