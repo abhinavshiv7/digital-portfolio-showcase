@@ -71,7 +71,7 @@ export const Contact = () => {
   const handleWhatsAppClick = () => {
     const phone = "919341494320";
     const message = encodeURIComponent("Hi Abhinav! I found your portfolio and would like to connect.");
-    window.open(`https://wa.me/${phone}?text=${message}`, "_blank");
+    window.open(`https://web.whatsapp.com/send?phone=${phone}&text=${message}`, "_blank");
   };
 
   return (
