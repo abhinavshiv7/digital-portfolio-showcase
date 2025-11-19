@@ -37,7 +37,7 @@ export const Hero = () => {
             </div>
 
             <p className="text-sm md:text-base text-muted-foreground max-w-md leading-relaxed">
-              I specialize in creating logos, visual identities, mobile apps, websites, social media content, and editorial designs.
+              Cloud Engineering student specializing in AWS, Azure, and GCP. Hands-on experience with Docker, Kubernetes, Terraform, and CI/CD pipelines. Pursuing cloud certifications while building scalable infrastructure solutions. Passionate about automation and DevOps practices.
             </p>
 
             <Button 
