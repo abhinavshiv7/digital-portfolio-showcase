@@ -1,7 +1,10 @@
 import { Card } from "@/components/ui/card";
 import { Award, Trophy } from "lucide-react";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { cn } from "@/lib/utils";
 
 export const Experience = () => {
+  const { ref, isVisible } = useScrollReveal();
   const experiences = [
     {
       title: "Cloud Certifications",
@@ -30,8 +33,11 @@ export const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-20 px-4">
-      <div className="max-w-4xl mx-auto">
+    <section id="experience" className="py-20 px-4" ref={ref}>
+      <div className={cn(
+        "max-w-4xl mx-auto transition-all duration-1000",
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      )}>
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Certifications & Achievements</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
