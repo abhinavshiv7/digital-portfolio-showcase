@@ -47,8 +47,15 @@ export const Experience = () => {
           {experiences.map((exp, index) => (
             <Card 
               key={index}
-              className="p-6 hover:shadow-lg transition-all duration-300 animate-fade-in-left bg-card"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className={cn(
+                "p-6 hover:shadow-lg transition-all duration-300 bg-card",
+                "opacity-0 -translate-x-10",
+                isVisible && "animate-fade-in-left"
+              )}
+              style={{ 
+                animationDelay: isVisible ? `${index * 200}ms` : '0ms',
+                animationFillMode: 'forwards'
+              }}
             >
               <div className="flex flex-col md:flex-row md:items-start gap-6">
                 <div className="flex-shrink-0">
