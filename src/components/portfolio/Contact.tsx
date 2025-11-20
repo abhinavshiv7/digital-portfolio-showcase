@@ -80,7 +80,7 @@ export const Contact = () => {
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
-          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
+          <p className="text-foreground/80 mt-4 max-w-2xl mx-auto">
             Have a project in mind or just want to chat? Feel free to reach out!
           </p>
         </div>
