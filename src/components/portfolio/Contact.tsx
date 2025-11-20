@@ -8,6 +8,9 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Mail, MapPin, Phone, Send } from "lucide-react";
 import { z } from "zod";
+import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { cn } from "@/lib/utils";
+
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(100),
@@ -18,6 +21,7 @@ const contactSchema = z.object({
 });
 
 export const Contact = () => {
+  const { ref, isVisible } = useScrollReveal();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -75,8 +79,11 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-20 px-4">
-      <div className="max-w-6xl mx-auto">
+    <section id="contact" className="py-20 px-4" ref={ref}>
+      <div className={cn(
+        "max-w-6xl mx-auto transition-all duration-1000",
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+      )}>
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
