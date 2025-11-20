@@ -56,15 +56,8 @@ export const Tools = () => {
           {tools.map((tool, index) => (
             <Card 
               key={index}
-              className={cn(
-                "p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-card",
-                "opacity-0 translate-y-10",
-                isVisible && "animate-fade-in"
-              )}
-              style={{ 
-                animationDelay: isVisible ? `${index * 100}ms` : '0ms',
-                animationFillMode: 'forwards'
-              }}
+              className="p-6 hover:shadow-lg transition-all duration-300 hover:-translate-y-1 animate-scale-in bg-card"
+              style={{ animationDelay: `${index * 0.05}s` }}
             >
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-primary/10 rounded-lg">

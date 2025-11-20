@@ -93,10 +93,7 @@ export const Contact = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
-          <div className={cn(
-            "space-y-8 opacity-0 -translate-x-10",
-            isVisible && "animate-fade-in-left"
-          )}>
+          <div className="space-y-8 animate-fade-in-left">
             <Card className="p-6 bg-card">
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="space-y-2">
@@ -180,12 +177,8 @@ export const Contact = () => {
             </Card>
           </div>
 
-          <div className="space-y-6">
-            <Card className={cn(
-              "p-6 bg-card hover:shadow-lg transition-all opacity-0 translate-x-10",
-              isVisible && "animate-fade-in-right"
-            )}
-            style={{ animationDelay: isVisible ? '100ms' : '0ms', animationFillMode: 'forwards' }}>
+          <div className="space-y-6 animate-fade-in-right">
+            <Card className="p-6 bg-card hover:shadow-lg transition-all">
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-primary/10 rounded-lg">
                   <Mail className="h-6 w-6 text-primary" />
@@ -199,11 +192,7 @@ export const Contact = () => {
               </div>
             </Card>
 
-            <Card className={cn(
-              "p-6 bg-card hover:shadow-lg transition-all opacity-0 translate-x-10",
-              isVisible && "animate-fade-in-right"
-            )}
-            style={{ animationDelay: isVisible ? '200ms' : '0ms', animationFillMode: 'forwards' }}>
+            <Card className="p-6 bg-card hover:shadow-lg transition-all">
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-primary/10 rounded-lg">
                   <Phone className="h-6 w-6 text-primary" />
@@ -220,11 +209,7 @@ export const Contact = () => {
               </div>
             </Card>
 
-            <Card className={cn(
-              "p-6 bg-card hover:shadow-lg transition-all opacity-0 translate-x-10",
-              isVisible && "animate-fade-in-right"
-            )}
-            style={{ animationDelay: isVisible ? '300ms' : '0ms', animationFillMode: 'forwards' }}>
+            <Card className="p-6 bg-card hover:shadow-lg transition-all">
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-primary/10 rounded-lg">
                   <MapPin className="h-6 w-6 text-primary" />
@@ -238,11 +223,7 @@ export const Contact = () => {
               </div>
             </Card>
 
-            <Card className={cn(
-              "p-8 bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/20 opacity-0 translate-x-10",
-              isVisible && "animate-fade-in-right"
-            )}
-            style={{ animationDelay: isVisible ? '400ms' : '0ms', animationFillMode: 'forwards' }}>
+            <Card className="p-8 bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/20">
               <h3 className="font-bold text-xl mb-4">Let's Build Something Amazing Together!</h3>
               <p className="text-muted-foreground">
                 Whether you have a project in mind, need technical consultation, or just want to 

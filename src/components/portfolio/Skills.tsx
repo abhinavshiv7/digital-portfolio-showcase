@@ -66,15 +66,8 @@ export const Skills = () => {
           {skillCategories.map((category, categoryIndex) => (
             <Card 
               key={categoryIndex}
-              className={cn(
-                "p-6 space-y-6 hover:shadow-lg transition-all duration-300 bg-card",
-                "opacity-0 scale-95",
-                isVisible && "animate-scale-in"
-              )}
-              style={{ 
-                animationDelay: isVisible ? `${categoryIndex * 100}ms` : '0ms',
-                animationFillMode: 'forwards'
-              }}
+              className="p-6 space-y-6 hover:shadow-lg transition-all duration-300 animate-fade-in bg-card"
+              style={{ animationDelay: `${categoryIndex * 0.1}s` }}
             >
               <h3 className="text-xl font-bold text-primary">{category.category}</h3>
               <div className="space-y-4">
