@@ -96,6 +96,10 @@ export default {
           "0%, 100%": { boxShadow: "0 0 20px hsl(156 99% 38% / 0.4)" },
           "50%": { boxShadow: "0 0 40px hsl(156 99% 38% / 0.6)" },
         },
+        "border-rotate": {
+          "0%": { "--border-angle": "0deg" },
+          "100%": { "--border-angle": "360deg" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -106,6 +110,7 @@ export default {
         "scale-in": "scale-in 0.5s ease-out",
         "float": "float 3s ease-in-out infinite",
         "glow": "glow 2s ease-in-out infinite",
+        "border-rotate": "border-rotate 3s linear infinite",
       },
     },
   },

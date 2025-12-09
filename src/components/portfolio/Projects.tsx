@@ -44,7 +44,7 @@ export const Projects = () => {
           {projects.map((project, index) => (
             <Card 
               key={index} 
-              className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-scale-in bg-card"
+              className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-scale-in bg-card hover-glow-border"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="relative h-48 overflow-hidden">
