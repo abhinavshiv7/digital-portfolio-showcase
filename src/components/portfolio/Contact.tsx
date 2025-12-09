@@ -79,11 +79,7 @@ export const Contact = () => {
   };
 
   return (
-    <section 
-      id="contact" 
-      className="py-20 px-4 bg-gradient-to-b from-background via-card/30 to-muted/20" 
-      ref={ref}
-    >
+    <section id="contact" className="py-20 px-4" ref={ref}>
       <div className={cn(
         "max-w-6xl mx-auto transition-all duration-1000",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"

@@ -7,7 +7,7 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen bg-gradient-to-b from-background via-background to-muted/10">
+    <section className="relative min-h-screen">
       {/* Top Navigation Bar */}
       <div className="absolute top-0 left-0 right-0 z-20 px-6 md:px-12 lg:px-16 py-6 md:py-8 flex justify-between items-center">
         <div className="text-xl md:text-2xl font-light text-foreground tracking-wider">
