@@ -127,3 +127,81 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+/* Rotating border glow effect */
+@property --border-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@layer utilities {
+  .hover-glow-border {
+    position: relative;
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    transition: all 0.3s ease;
+  }
+
+  .hover-glow-border::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    padding: 2px;
+    background: conic-gradient(
+      from var(--border-angle),
+      transparent 25%,
+      hsl(156 99% 38%) 50%,
+      transparent 75%
+    );
+    -webkit-mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    mask: 
+      linear-gradient(#fff 0 0) content-box, 
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+  }
+
+  .hover-glow-border::after {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: inherit;
+    background: conic-gradient(
+      from var(--border-angle),
+      transparent 25%,
+      hsl(156 99% 38% / 0.4) 50%,
+      transparent 75%
+    );
+    filter: blur(12px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -2;
+  }
+
+  .hover-glow-border:hover::before,
+  .hover-glow-border:hover::after {
+    opacity: 1;
+    animation: border-rotate 3s linear infinite;
+  }
+
+  .hover-glow-border:hover {
+    border-color: transparent;
+    box-shadow: 0 0 30px hsl(156 99% 38% / 0.3);
+  }
+}
+
+@keyframes border-rotate {
+  0% {
+    --border-angle: 0deg;
+  }
+  100% {
+    --border-angle: 360deg;
+  }
+}

@@ -18,7 +18,7 @@ export const Education = () => {
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
         </div>
 
-        <Card className="p-8 hover:shadow-lg transition-all duration-300 animate-fade-in bg-card">
+        <Card className="p-8 transition-all duration-300 animate-fade-in bg-card hover-glow-border">
           <div className="flex flex-col md:flex-row gap-8">
             <div className="flex-shrink-0">
               <div className="p-4 bg-primary/10 rounded-lg">
