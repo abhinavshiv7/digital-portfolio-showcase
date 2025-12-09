@@ -33,7 +33,11 @@ export const Experience = () => {
   ];
 
   return (
-    <section id="experience" className="py-20 px-4" ref={ref}>
+    <section 
+      id="experience" 
+      className="py-20 px-4 bg-gradient-to-b from-background to-muted/20" 
+      ref={ref}
+    >
       <div className={cn(
         "max-w-4xl mx-auto transition-all duration-1000",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"

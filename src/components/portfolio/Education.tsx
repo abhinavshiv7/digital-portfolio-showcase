@@ -8,7 +8,11 @@ export const Education = () => {
   const { ref, isVisible } = useScrollReveal();
 
   return (
-    <section id="education" className="py-20 px-4 bg-muted/30" ref={ref}>
+    <section 
+      id="education" 
+      className="py-20 px-4 bg-gradient-to-b from-background via-muted/20 to-background" 
+      ref={ref}
+    >
       <div className={cn(
         "max-w-4xl mx-auto transition-all duration-1000",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"

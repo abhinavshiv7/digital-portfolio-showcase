@@ -52,7 +52,7 @@ export const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 px-4" ref={ref}>
+    <section id="skills" className="py-20 px-4 bg-gradient-to-b from-background via-muted/15 to-muted/25" ref={ref}>
       <div className={cn(
         "max-w-6xl mx-auto transition-all duration-1000",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
