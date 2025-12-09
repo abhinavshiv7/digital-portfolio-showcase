@@ -39,7 +39,7 @@ export const Tools = () => {
   ];
 
   return (
-    <section id="tools" className="py-20 px-4 bg-gradient-to-b from-muted/25 via-card/15 to-background" ref={ref}>
+    <section id="tools" className="py-20 px-4" ref={ref}>
       <div className={cn(
         "max-w-6xl mx-auto transition-all duration-1000",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
