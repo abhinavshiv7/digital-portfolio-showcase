@@ -1,6 +1,7 @@
 import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
 import { Resend } from "https://esm.sh/resend@4.0.0";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2.81.1";
+import { z } from "https://esm.sh/zod@3.25.76";
 
 const resend = new Resend(Deno.env.get("RESEND_API_KEY"));
 
@@ -10,12 +11,25 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
 };
 
-interface ContactRequest {
-  name: string;
-  email: string;
-  company?: string;
-  whatsapp?: string;
-  message?: string;
+// Server-side validation schema
+const contactSchema = z.object({
+  name: z.string().min(2, "Name must be at least 2 characters").max(100, "Name must be less than 100 characters"),
+  email: z.string().email("Invalid email address").max(255, "Email must be less than 255 characters"),
+  company: z.string().max(100, "Company must be less than 100 characters").optional().nullable(),
+  whatsapp: z.string().max(20, "WhatsApp number must be less than 20 characters").optional().nullable(),
+  message: z.string().max(1000, "Message must be less than 1000 characters").optional().nullable(),
+});
+
+// HTML escape function to prevent XSS in email templates
+function escapeHtml(text: string): string {
+  const htmlEntities: Record<string, string> = {
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  };
+  return text.replace(/[&<>"']/g, (char) => htmlEntities[char] || char);
 }
 
 const handler = async (req: Request): Promise<Response> => {
@@ -24,9 +38,31 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
-    const { name, email, company, whatsapp, message }: ContactRequest = await req.json();
+    // Parse and validate input
+    const rawData = await req.json();
+    const validationResult = contactSchema.safeParse(rawData);
+    
+    if (!validationResult.success) {
+      console.error("Validation error:", validationResult.error.errors);
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: "Invalid form data. Please check your inputs and try again.",
+        }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
 
-    console.log("Processing contact form submission:", { name, email, company, whatsapp });
+    const { name, email, company, whatsapp, message } = validationResult.data;
+
+    // Escape HTML entities for safe email template insertion
+    const safeName = escapeHtml(name);
+    const safeCompany = company ? escapeHtml(company) : null;
+
+    console.log("Processing contact form submission:", { name: safeName, email, company: safeCompany, whatsapp });
 
     // Initialize Supabase client
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
@@ -46,12 +82,12 @@ const handler = async (req: Request): Promise<Response> => {
 
     if (dbError) {
       console.error("Database error:", dbError);
-      throw new Error(`Failed to save contact: ${dbError.message}`);
+      throw new Error("Database operation failed");
     }
 
     console.log("Contact saved to database successfully");
 
-    // Send confirmation email
+    // Send confirmation email with escaped content
     const emailResponse = await resend.emails.send({
       from: "Portfolio Contact <onboarding@resend.dev>",
       to: [email],
@@ -75,10 +111,10 @@ const handler = async (req: Request): Promise<Response> => {
               <h1>Thank You for Visiting!</h1>
             </div>
             <div class="content">
-              <p>Hi <strong>${name}</strong>,</p>
+              <p>Hi <strong>${safeName}</strong>,</p>
               <p>Thank you for taking the time to visit my portfolio and reach out. I truly appreciate your interest!</p>
               <p>I have received your message and will get back to you as soon as possible. I'm excited to discuss potential opportunities and collaborations.</p>
-              ${company ? `<p>I noticed you're from <span class="highlight">${company}</span>. Looking forward to learning more about your organization.</p>` : ''}
+              ${safeCompany ? `<p>I noticed you're from <span class="highlight">${safeCompany}</span>. Looking forward to learning more about your organization.</p>` : ''}
               <p>In the meantime, feel free to explore my portfolio further to learn more about my projects, skills, and experience.</p>
               <p><strong>Best regards,</strong><br/>Computer Science Student</p>
             </div>
@@ -97,7 +133,6 @@ const handler = async (req: Request): Promise<Response> => {
       JSON.stringify({
         success: true,
         message: "Contact saved and confirmation email sent",
-        emailId: emailResponse.data?.id,
       }),
       {
         status: 200,
@@ -108,11 +143,14 @@ const handler = async (req: Request): Promise<Response> => {
       }
     );
   } catch (error: any) {
+    // Log detailed error server-side only
     console.error("Error in send-contact-confirmation function:", error);
+    
+    // Return generic error message to client
     return new Response(
       JSON.stringify({
         success: false,
-        error: error.message,
+        error: "Failed to process your request. Please try again later.",
       }),
       {
         status: 500,
