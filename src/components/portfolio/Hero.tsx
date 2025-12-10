@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Menu } from "lucide-react";
 import profileImage from "@/assets/profile-portrait.jpg";
 
 export const Hero = () => {
@@ -10,18 +9,28 @@ export const Hero = () => {
   return (
     <section className="relative min-h-screen">
       {/* Top Navigation Bar */}
-      <div className="absolute top-0 left-0 right-0 z-20 px-6 md:px-12 lg:px-16 py-6 md:py-8 flex justify-between items-center">
-        <div className="text-xl md:text-2xl font-light text-foreground tracking-wider">
-          Abhinav
-        </div>
-        <button 
-          className="text-foreground hover:text-primary transition-colors p-2"
-          onClick={() => scrollToSection("contact")}
-          aria-label="Menu"
-        >
-          <Menu className="h-6 w-6" />
-        </button>
-      </div>
+      <nav className="absolute top-0 left-0 right-0 z-20 px-6 md:px-12 lg:px-16 py-6 md:py-8">
+        <ul className="flex justify-center items-center gap-6 md:gap-10 flex-wrap">
+          {[
+            { label: "About", id: "about" },
+            { label: "Skills", id: "skills" },
+            { label: "Tools", id: "tools" },
+            { label: "Certifications", id: "certifications" },
+            { label: "Projects", id: "projects" },
+            { label: "Education", id: "education" },
+            { label: "Contact", id: "contact" },
+          ].map((item) => (
+            <li key={item.id}>
+              <button
+                onClick={() => scrollToSection(item.id)}
+                className="text-sm md:text-base text-foreground/80 hover:text-primary transition-colors font-medium tracking-wide relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-0.5 after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 hover:after:scale-x-100 hover:after:origin-bottom-left"
+              >
+                {item.label}
+              </button>
+            </li>
+          ))}
+        </ul>
+      </nav>
 
       {/* Main Content */}
       <div className="px-6 md:px-12 lg:px-16 min-h-screen flex items-center">
