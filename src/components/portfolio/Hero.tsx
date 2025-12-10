@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
-import { Menu, User } from "lucide-react";
+import { Menu } from "lucide-react";
+import profileImage from "@/assets/profile-portrait.jpg";
 
 export const Hero = () => {
   const scrollToSection = (id: string) => {
@@ -52,8 +53,12 @@ export const Hero = () => {
           {/* Right Column - Profile Image */}
           <div className="flex justify-center md:justify-end items-center">
             <div className="relative w-full max-w-md aspect-[3/4] md:aspect-[4/5]">
-              <div className="w-full h-full bg-muted/30 flex items-center justify-center overflow-hidden">
-                <User className="w-24 h-24 md:w-32 md:h-32 text-muted-foreground/20" />
+              <div className="w-full h-full overflow-hidden">
+                <img 
+                  src={profileImage} 
+                  alt="Abhinav - Cloud Engineering Student" 
+                  className="w-full h-full object-cover object-top"
+                />
               </div>
             </div>
           </div>
