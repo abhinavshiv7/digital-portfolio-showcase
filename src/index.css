@@ -141,8 +141,6 @@ All colors MUST be HSL.
     background: hsl(var(--card));
     border: 1px solid hsl(var(--border));
     transition: all 0.3s ease;
-    isolation: isolate;
-    overflow: hidden;
   }
 
   .hover-glow-border::before {
@@ -167,26 +165,28 @@ All colors MUST be HSL.
     mask-composite: exclude;
     opacity: 0;
     transition: opacity 0.3s ease;
-    z-index: 1;
-    pointer-events: none;
+    z-index: -1;
   }
 
   .hover-glow-border::after {
     content: "";
     position: absolute;
-    inset: 0;
+    inset: -4px;
     border-radius: inherit;
-    background: hsl(var(--card));
-    z-index: 0;
-    pointer-events: none;
+    background: conic-gradient(
+      from var(--border-angle),
+      transparent 25%,
+      hsl(156 99% 38% / 0.4) 50%,
+      transparent 75%
+    );
+    filter: blur(12px);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -2;
   }
 
-  .hover-glow-border > * {
-    position: relative;
-    z-index: 2;
-  }
-
-  .hover-glow-border:hover::before {
+  .hover-glow-border:hover::before,
+  .hover-glow-border:hover::after {
     opacity: 1;
     animation: border-rotate 3s linear infinite;
   }
