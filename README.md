@@ -60,7 +60,7 @@ This project goes beyond simple hosting by implementing specific Cloud Native pr
 ### **3. Security & Vulnerability Scanning**
 * **Procedure:** Enabled **Container Analysis API** and **Container Scanning API** to automatically scan Docker images for Common Vulnerabilities and Exposures (CVEs).
 * **Result:** Achieved a **"None found"** vulnerability status for production images.
-* **IAM Policy:** Implemented strict policies using a dedicated Service Account (`github-actions-deployer`) with specific roles (`roles/artifactregistry.writer`, `roles/run.admin`), enforcing the Principle of Least Privilege.
+* **IAM Policy:** Implemented strict policies using a dedicated Service Account (`github-actions-deployer`) with specific roles (`roles/artifactregistry.writer`, `roles/run.admin`, `roles/iam.serviceAccountUser`), enforcing the Principle of Least Privilege.
 
 ### **4. Traffic Management (Canary Deployments)**
 * **Procedure:** Utilized Cloud Run's traffic splitting feature to manage "Revisions."
