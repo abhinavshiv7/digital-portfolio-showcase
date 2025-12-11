@@ -128,7 +128,7 @@ A fully automated pipeline (`.github/workflows/deploy.yml`) triggers on every pu
   </tr>
   <tr>
     <td><img src="./screenshots/GCP_Terraform.png" width="400" alt="Terraform"></td>
-    <td><img src="./screenshots/GCP_Cloud_Run.png" width="400" alt="Cloud Run"></td>
+    <td><img src="./screenshots/GCP_cloud_run.png" width="400" alt="Cloud Run"></td>
   </tr>
   <tr>
     <td align="center"><i>Successful provisioning of IaC Resources</i></td>
