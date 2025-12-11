@@ -1,12 +1,14 @@
 # Cloud-Native Polyglot Portfolio (GCP + DevOps)
 
-    
+\<div align="center"\>
+
+\</div\>
 
 ## 📌 Project Overview
 
 This repository hosts a **Cloud-Native Portfolio Website** architected to demonstrate modern **DevOps** and **Site Reliability Engineering (SRE)** practices. Unlike standard static deployments, this project leverages a production-grade CI/CD pipeline, immutable infrastructure using Docker, and automated provisioning via Terraform on **Google Cloud Platform (GCP)**.
 
-The application itself follows a **Polyglot Architecture**, featuring a **React + TypeScript** frontend served via **Nginx** and integrated with a **Supabase** backend for dynamic content management.
+The application follows a **Polyglot Architecture**, featuring a **React + TypeScript** frontend served via **Nginx** and integrated with a **Supabase** backend for dynamic content management.
 
 -----
 
@@ -25,6 +27,7 @@ The system utilizes a serverless microservices pattern designed for high availab
 | **Infrastructure as Code** | Terraform | Programmatic provisioning of GCP Artifact Registry and IAM Roles. |
 | **CI/CD** | GitHub Actions | Automated build, test, and deployment workflows. |
 | **Observability** | Google Cloud Monitoring | Real-time traffic analysis and latency alerting policies. |
+| **Security** | Container Analysis API | Automated vulnerability scanning of Docker images. |
 | **Region** | `asia-south2` (Delhi) | Low-latency hosting for the target demographic. |
 
 -----
@@ -45,25 +48,24 @@ This project goes beyond simple hosting by implementing specific Cloud Native pr
 
   * **Procedure:** Transitioned from legacy Container Registry to the modern **Artifact Registry**.
   * **Function:** Acts as a secure, private warehouse for Docker images.
-  * **Region Locking:** All artifacts are stored strictly in `asia-south2` (Delhi) to ensure data sovereignty and low latency.
+  * **Region Locking:** All artifacts are stored strictly in `asia-south2` (Delhi) to ensure data sovereignty.
+  * **Parallel Infrastructure:** Maintained two repositories—`portfolio-repo` (Manual Production) and `portfolio-repo-tf` (Terraform Automation)—to demonstrate both manual management and IaC capabilities side-by-side.
 
-### **3. IAM & Least Privilege Security**
+### **3. Security & Vulnerability Scanning**
 
-  * **Procedure:** Implemented strict IAM policies using a dedicated Service Account (`github-actions-deployer`) instead of using Owner permissions.
-  * **Roles Assigned:**
-      * `roles/artifactregistry.writer`: Allows pushing images only.
-      * `roles/run.admin`: Grants permission to update the specific Cloud Run service.
-      * `roles/iam.serviceAccountUser`: Allows the pipeline to "act as" the service account during deployment.
+  * **Procedure:** Enabled **Container Analysis API** and **Container Scanning API** to automatically scan Docker images for Common Vulnerabilities and Exposures (CVEs).
+  * **Result:** Achieved a **"None found"** vulnerability status for production images.
+  * **IAM Policy:** Implemented strict policies using a dedicated Service Account (`github-actions-deployer`) with specific roles (`roles/artifactregistry.writer`, `roles/run.admin`), enforcing the Principle of Least Privilege.
 
 ### **4. Traffic Management (Canary Deployments)**
 
   * **Procedure:** Utilized Cloud Run's traffic splitting feature to manage "Revisions."
-  * **Strategy:** Implemented capacity for **Blue/Green deployments**—routing 90% of traffic to the stable revision and 10% to the new revision for A/B testing before full rollout.
+  * **Strategy:** Implemented capacity for **Blue/Green deployments**—routing 90% of traffic to the stable revision and 10% to the new revision for A/B testing.
 
 ### **5. Observability & Monitoring**
 
   * **Procedure:** Implemented **Google Cloud Monitoring** (Stackdriver) to track application health.
-  * **Metrics:** Configured custom dashboards to visualize `Request Count` and `Container Startup Latency`.
+  * **Metrics:** Created custom dashboards (`Portfolio Live Ops`) to visualize `Request Count` and `Container Startup Latency` under load.
   * **Alerting:** Set up an Alert Policy to trigger email notifications if p99 latency exceeds **1000ms** for a duration of 1 minute.
 
 -----
@@ -79,7 +81,14 @@ The application is packaged using a **Multi-Stage Docker Build** to optimize sec
 
 ### **2. Infrastructure as Code (Terraform)**
 
-All critical cloud resources were provisioned using Terraform (`/terraform-portfolio`), ensuring the infrastructure is reproducible and version-controlled.
+All critical cloud resources were provisioned using Terraform (`/terraform-portfolio`), ensuring the infrastructure is reproducible.
+
+**Key Challenges Solved:**
+
+  * **API Dependencies:** Manually handled the "Chicken and Egg" problem by enabling the **Cloud Resource Manager API** (`cloudresourcemanager.googleapis.com`) first, allowing Terraform to then enable `iam.googleapis.com`, `run.googleapis.com`, and `artifactregistry.googleapis.com` automatically.
+  * **Dependency Chaining:** Used `depends_on` blocks to ensure APIs were fully active before attempting to create Service Accounts, preventing 403 Forbidden errors.
+
+<!-- end list -->
 
 ```hcl
 # Example: Creating the Artifact Registry via Code
@@ -87,6 +96,7 @@ resource "google_artifact_registry_repository" "my_repo" {
   location      = "asia-south2"
   repository_id = "portfolio-repo-tf"
   format        = "DOCKER"
+  depends_on    = [google_project_service.artifact_registry_api]
 }
 ```
 
@@ -98,6 +108,49 @@ A fully automated pipeline (`.github/workflows/deploy.yml`) triggers on every pu
 2.  **Build:** Injects secrets via `--build-arg` and builds the Docker container.
 3.  **Push:** Uploads the tagged image to the private Google Artifact Registry.
 4.  **Deploy:** Updates Cloud Run with the new image revision and routes traffic.
+
+-----
+
+## 📸 Project Screenshots
+
+\<table align="center"\>
+\<tr\>
+\<td align="center"\>\<b\>Live Deployment (Cloud Run)\</b\>\</td\>
+\<td align="center"\>\<b\>CI/CD Pipeline Execution\</b\>\</td\>
+\</tr\>
+\<tr\>
+\<td\>\<img src="screenshots/webpage.jpg" width="400" alt="Live Site"\>\</td\>
+\<td\>\<img src="screenshots/pipeline.png" width="400" alt="Pipeline"\>\</td\>
+\</tr\>
+\<tr\>
+\<td align="center"\>\<i\>Hosted on Google Cloud Run (asia-south2)\</i\>\</td\>
+\<td align="center"\>\<i\>Automated Build & Deploy Workflow\</i\>\</td\>
+\</tr\>
+\<tr\>
+\<td align="center"\>\<b\>Infrastructure as Code (Terraform)\</b\>\</td\>
+\<td align="center"\>\<b\>Parallel Artifact Registries\</b\>\</td\>
+\</tr\>
+\<tr\>
+\<td\>\<img src="screenshots/GCP\_Terraform.png" width="400" alt="Terraform"\>\</td\>
+\<td\>\<img src="screenshots/GCP\_Artifact\_Registry.png" width="400" alt="Registry"\>\</td\>
+\</tr\>
+\<tr\>
+\<td align="center"\>\<i\>Successful provisioning of IaC Resources\</i\>\</td\>
+\<td align="center"\>\<i\>Manual vs. Terraform Managed Infrastructure\</i\>\</td\>
+\</tr\>
+\<tr\>
+\<td align="center"\>\<b\>Operations Dashboard\</b\>\</td\>
+\<td align="center"\>\<b\>Security Scanning\</b\>\</td\>
+\</tr\>
+\<tr\>
+\<td\>\<img src="screenshots/GCP\_Monitoring.png" width="400" alt="Monitoring"\>\</td\>
+\<td\>\<img src="screenshots/GCP\_Artifact\_Registry.png" width="400" alt="Security"\>\</td\>
+\</tr\>
+\<tr\>
+\<td align="center"\>\<i\>Real-time Latency & Traffic Analysis\</i\>\</td\>
+\<td align="center"\>\<i\>Vulnerability Scanning: None Found\</i\>\</td\>
+\</tr\>
+\</table\>
 
 -----
 
@@ -153,4 +206,6 @@ Distributed under the MIT License. See `LICENSE` for more information.
 
 -----
 
-*Built by Abhinav - Cloud Engineer*
+\<div align="center"\>
+\<i\>Built by Abhinav - Cloud Engineer\</i\>
+\</div\>
