@@ -4,9 +4,22 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { cn } from "@/lib/utils";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "@/components/ui/carousel";
+import { useEffect, useState } from "react";
 
 export const Projects = () => {
   const { ref, isVisible } = useScrollReveal();
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
+  const [count, setCount] = useState(0);
+
   const projects = [
     {
       title: "FitLife Planner & AI Assistant",
@@ -26,6 +39,17 @@ export const Projects = () => {
     }
   ];
 
+  useEffect(() => {
+    if (!api) return;
+
+    setCount(api.scrollSnapList().length);
+    setCurrent(api.selectedScrollSnap());
+
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
+
   return (
     <section id="projects" className="py-20 px-4" ref={ref}>
       <div className={cn(
@@ -40,50 +64,81 @@ export const Projects = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {projects.map((project, index) => (
-            <Card 
-              key={index} 
-              className="overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-2 animate-scale-in bg-card hover-glow-border"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="relative h-48 overflow-hidden">
-                <img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
-              </div>
-              
-              <div className="p-6 space-y-4">
-                <h3 className="text-xl font-bold">{project.title}</h3>
-                <p className="text-muted-foreground">{project.description}</p>
-                
-                <div className="flex flex-wrap gap-2">
-                  {project.tags.map((tag, tagIndex) => (
-                    <Badge key={tagIndex} variant="secondary">
-                      {tag}
-                    </Badge>
-                  ))}
-                </div>
+        <Carousel
+          setApi={setApi}
+          opts={{
+            align: "center",
+            loop: true,
+          }}
+          className="w-full max-w-4xl mx-auto"
+        >
+          <CarouselContent className="-ml-2 md:-ml-4">
+            {projects.map((project, index) => (
+              <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-4/5 lg:basis-3/5">
+                <div className={cn(
+                  "transition-all duration-300",
+                  current === index ? "scale-100 opacity-100" : "scale-95 opacity-50"
+                )}>
+                  <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 bg-card hover-glow-border">
+                    <div className="relative h-48 overflow-hidden">
+                      <img 
+                        src={project.image} 
+                        alt={project.title}
+                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                    </div>
+                    
+                    <div className="p-6 space-y-4">
+                      <h3 className="text-xl font-bold">{project.title}</h3>
+                      <p className="text-muted-foreground">{project.description}</p>
+                      
+                      <div className="flex flex-wrap gap-2">
+                        {project.tags.map((tag, tagIndex) => (
+                          <Badge key={tagIndex} variant="secondary">
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
 
-                <div className="flex gap-4 pt-4">
-                  <Button variant="outline" size="sm" asChild>
-                    <a href={project.github} target="_blank" rel="noopener noreferrer">
-                      <Github className="h-4 w-4 mr-2" />
-                      Code
-                    </a>
-                  </Button>
-                  <Button size="sm" asChild>
-                    <a href={project.demo} target="_blank" rel="noopener noreferrer">
-                      <ExternalLink className="h-4 w-4 mr-2" />
-                      Demo
-                    </a>
-                  </Button>
+                      <div className="flex gap-4 pt-4">
+                        <Button variant="outline" size="sm" asChild>
+                          <a href={project.github} target="_blank" rel="noopener noreferrer">
+                            <Github className="h-4 w-4 mr-2" />
+                            Code
+                          </a>
+                        </Button>
+                        <Button size="sm" asChild>
+                          <a href={project.demo} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="h-4 w-4 mr-2" />
+                            Demo
+                          </a>
+                        </Button>
+                      </div>
+                    </div>
+                  </Card>
                 </div>
-              </div>
-            </Card>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="left-0 md:-left-12" />
+          <CarouselNext className="right-0 md:-right-12" />
+        </Carousel>
+
+        {/* Navigation Dots */}
+        <div className="flex justify-center gap-2 mt-6">
+          {Array.from({ length: count }).map((_, index) => (
+            <button
+              key={index}
+              onClick={() => api?.scrollTo(index)}
+              className={cn(
+                "w-3 h-3 rounded-full transition-all duration-300",
+                current === index 
+                  ? "bg-primary scale-110" 
+                  : "bg-muted-foreground/30 hover:bg-muted-foreground/50"
+              )}
+              aria-label={`Go to slide ${index + 1}`}
+            />
           ))}
         </div>
       </div>
