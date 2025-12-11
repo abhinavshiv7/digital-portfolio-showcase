@@ -116,8 +116,8 @@ A fully automated pipeline (`.github/workflows/deploy.yml`) triggers on every pu
 \<td align="center"\>\<b\>CI/CD Pipeline Execution\</b\>\</td\>
 \</tr\>
 \<tr\>
-\<td\>\<img src="screenshots/webpage.jpg" width="400" alt="Live Site"\>\</td\>
-\<td\>\<img src="screenshots/pipeline.png" width="400" alt="Pipeline"\>\</td\>
+\<td\>\<img src="./screenshots/webpage.jpg" width="400" alt="Live Site"\>\</td\>
+\<td\>\<img src="./screenshots/pipeline.png" width="400" alt="Pipeline"\>\</td\>
 \</tr\>
 \<tr\>
 \<td align="center"\>\<i\>Hosted on Google Cloud Run (asia-south2)\</i\>\</td\>
@@ -128,8 +128,8 @@ A fully automated pipeline (`.github/workflows/deploy.yml`) triggers on every pu
 \<td align="center"\>\<b\>Live Service Status\</b\>\</td\>
 \</tr\>
 \<tr\>
-\<td\>\<img src="screenshots/GCP\_Terraform.png" width="400" alt="Terraform"\>\</td\>
-\<td\>\<img src="screenshots/GCP\_cloud\_run.png" width="400" alt="Cloud Run"\>\</td\>
+\<td\>\<img src="./screenshots/GCP\_Terraform.png" width="400" alt="Terraform"\>\</td\>
+\<td\>\<img src="./screenshots/GCP\_cloud\_run.png" width="400" alt="Cloud Run"\>\</td\>
 \</tr\>
 \<tr\>
 \<td align="center"\>\<i\>Successful provisioning of IaC Resources\</i\>\</td\>
@@ -140,8 +140,8 @@ A fully automated pipeline (`.github/workflows/deploy.yml`) triggers on every pu
 \<td align="center"\>\<b\>Artifact Registry & Security\</b\>\</td\>
 \</tr\>
 \<tr\>
-\<td\>\<img src="screenshots/GCP\_Monitoring.png" width="400" alt="Monitoring"\>\</td\>
-\<td\>\<img src="screenshots/GCP\_Artifact\_Registry.png" width="400" alt="Security"\>\</td\>
+\<td\>\<img src="./screenshots/GCP\_Monitoring.png" width="400" alt="Monitoring"\>\</td\>
+\<td\>\<img src="./screenshots/GCP\_Artifact\_Registry.png" width="400" alt="Security"\>\</td\>
 \</tr\>
 \<tr\>
 \<td align="center"\>\<i\>Real-time Latency & Traffic Analysis\</i\>\</td\>
