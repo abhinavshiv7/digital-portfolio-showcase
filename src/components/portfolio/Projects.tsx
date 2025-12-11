@@ -36,6 +36,30 @@ export const Projects = () => {
       image: "https://images.unsplash.com/photo-1544396821-4dd40b938ad3?w=800&auto=format&fit=crop",
       github: "https://github.com/abhinavshiv7/Smart_Directory_Manager",
       demo: "https://github.com/abhinavshiv7/Smart_Directory_Manager"
+    },
+    {
+      title: "Cloud Infrastructure Dashboard",
+      description: "Real-time monitoring dashboard for cloud resources with automated alerts and cost optimization recommendations",
+      tags: ["React", "GCP", "Terraform", "Docker"],
+      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop",
+      github: "#",
+      demo: "#"
+    },
+    {
+      title: "DevOps Pipeline Automation",
+      description: "End-to-end CI/CD pipeline with automated testing, security scanning, and multi-environment deployments",
+      tags: ["GitHub Actions", "Kubernetes", "AWS", "Jenkins"],
+      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop",
+      github: "#",
+      demo: "#"
+    },
+    {
+      title: "API Gateway & Microservices",
+      description: "Scalable microservices architecture with centralized API gateway, load balancing, and service mesh integration",
+      tags: ["Node.js", "Docker", "Kong", "Redis"],
+      image: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=800&auto=format&fit=crop",
+      github: "#",
+      demo: "#"
     }
   ];
 
