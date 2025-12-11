@@ -109,45 +109,44 @@ A fully automated pipeline (`.github/workflows/deploy.yml`) triggers on every pu
 -----
 
 ## 📸 Project Screenshots
-
-\<table align="center"\>
-\<tr\>
-\<td align="center"\>\<b\>Live Deployment (Cloud Run)\</b\>\</td\>
-\<td align="center"\>\<b\>CI/CD Pipeline Execution\</b\>\</td\>
-\</tr\>
-\<tr\>
-\<td\>\<img src="./screenshots/webpage.jpg" width="400" alt="Live Site"\>\</td\>
-\<td\>\<img src="./screenshots/pipeline.png" width="400" alt="Pipeline"\>\</td\>
-\</tr\>
-\<tr\>
-\<td align="center"\>\<i\>Hosted on Google Cloud Run (asia-south2)\</i\>\</td\>
-\<td align="center"\>\<i\>Automated Build & Deploy Workflow\</i\>\</td\>
-\</tr\>
-\<tr\>
-\<td align="center"\>\<b\>Infrastructure as Code (Terraform)\</b\>\</td\>
-\<td align="center"\>\<b\>Live Service Status\</b\>\</td\>
-\</tr\>
-\<tr\>
-\<td\>\<img src="./screenshots/GCP\_Terraform.png" width="400" alt="Terraform"\>\</td\>
-\<td\>\<img src="./screenshots/GCP\_cloud\_run.png" width="400" alt="Cloud Run"\>\</td\>
-\</tr\>
-\<tr\>
-\<td align="center"\>\<i\>Successful provisioning of IaC Resources\</i\>\</td\>
-\<td align="center"\>\<i\>Healthy Service Revisions & Traffic Split\</i\>\</td\>
-\</tr\>
-\<tr\>
-\<td align="center"\>\<b\>Operations Dashboard\</b\>\</td\>
-\<td align="center"\>\<b\>Artifact Registry & Security\</b\>\</td\>
-\</tr\>
-\<tr\>
-\<td\>\<img src="./screenshots/GCP\_Monitoring.png" width="400" alt="Monitoring"\>\</td\>
-\<td\>\<img src="./screenshots/GCP\_Artifact\_Registry.png" width="400" alt="Security"\>\</td\>
-\</tr\>
-\<tr\>
-\<td align="center"\>\<i\>Real-time Latency & Traffic Analysis\</i\>\</td\>
-\<td align="center"\>\<i\>Immutable Artifacts & Vulnerability Scan\</i\>\</td\>
-\</tr\>
-\</table\>
+<table align="center">
+  <tr>
+    <td align="center"><b>Live Deployment (Cloud Run)</b></td>
+    <td align="center"><b>CI/CD Pipeline Execution</b></td>
+  </tr>
+  <tr>
+    <td><img src="./screenshots/webpage.png" width="400" alt="Live Site"></td>
+    <td><img src="./screenshots/pipeline.png" width="400" alt="Pipeline"></td>
+  </tr>
+  <tr>
+    <td align="center"><i>Hosted on Google Cloud Run (asia-south2)</i></td>
+    <td align="center"><i>Automated Build & Deploy Workflow</i></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Infrastructure as Code (Terraform)</b></td>
+    <td align="center"><b>Live Service Status</b></td>
+  </tr>
+  <tr>
+    <td><img src="./screenshots/GCP_Terraform.png" width="400" alt="Terraform"></td>
+    <td><img src="./screenshots/GCP_Cloud_Run.png" width="400" alt="Cloud Run"></td>
+  </tr>
+  <tr>
+    <td align="center"><i>Successful provisioning of IaC Resources</i></td>
+    <td align="center"><i>Healthy Service Revisions & Traffic Split</i></td>
+  </tr>
+  <tr>
+    <td align="center"><b>Operations Dashboard</b></td>
+    <td align="center"><b>Artifact Registry & Security</b></td>
+  </tr>
+  <tr>
+    <td><img src="./screenshots/GCP_Monitoring.png" width="400" alt="Monitoring"></td>
+    <td><img src="./screenshots/GCP_Artifact_Registry.png" width="400" alt="Security"></td>
+  </tr>
+  <tr>
+    <td align="center"><i>Real-time Latency & Traffic Analysis</i></td>
+    <td align="center"><i>Immutable Artifacts & Vulnerability Scan</i></td>
+  </tr>
+</table>
 
 -----
 
