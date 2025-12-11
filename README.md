@@ -113,17 +113,6 @@ A fully automated pipeline (`.github/workflows/deploy.yml`) triggers on every pu
 
 ## 📸 Project Screenshots
 
-Based on the list of filenames you just provided, I have updated the code to match them **exactly**.
-
-**Note:**
-
-1.  I kept **`webpage.jpg`** for the first slot (Live Deployment) since you previously uploaded it and it wasn't in your "change list."
-2.  I used **`GCP_Artifact_Registry.png`** for **both** the "Parallel Registries" and "Security Scanning" slots for now.
-      * *If you have a separate screenshot for the "List View" (showing both repositories), make sure to upload it and update that specific line.*
-3.  I updated the **Cloud Run** filename to lowercase (`GCP_cloud_run.png`) as you requested.
-
-### ✅ Corrected Screenshot Code (Copy & Paste)
-
 ```html
 <table align="center">
   <tr>
