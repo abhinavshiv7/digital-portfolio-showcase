@@ -1,3 +1,35 @@
+/**
+ * Contact.tsx - Contact Section Component
+ * 
+ * Displays contact form and information with:
+ * - Contact form with validation (name, email, company, WhatsApp, message)
+ * - Form submission to Supabase edge function
+ * - Contact info cards (email, WhatsApp, location)
+ * - Scroll-reveal animation on viewport entry
+ * 
+ * Form Validation:
+ * - Name: 2-100 characters (required)
+ * - Email: Valid email, max 255 characters (required)
+ * - Company: Max 100 characters (optional)
+ * - WhatsApp: Max 20 characters (optional)
+ * - Message: Max 1000 characters (optional)
+ * 
+ * Dependencies:
+ * - @/components/ui/card: Styled card component
+ * - @/components/ui/input: Input field component
+ * - @/components/ui/textarea: Textarea component
+ * - @/components/ui/button: Button component
+ * - @/components/ui/label: Form label component
+ * - @/hooks/use-toast: Toast notification hook
+ * - @/hooks/use-scroll-reveal: Intersection Observer hook for animations
+ * - @/integrations/supabase/client: Supabase client for edge function calls
+ * - zod: Form validation schema
+ * - lucide-react: Icons (Mail, MapPin, Phone, Send)
+ * 
+ * @component
+ * @file src/components/portfolio/Contact.tsx
+ */
+
 import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
@@ -11,7 +43,7 @@ import { z } from "zod";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { cn } from "@/lib/utils";
 
-
+/** Zod schema for contact form validation */
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters").max(100),
   email: z.string().email("Invalid email address").max(255),
@@ -22,6 +54,8 @@ const contactSchema = z.object({
 
 export const Contact = () => {
   const { ref, isVisible } = useScrollReveal();
+  
+  /** Form field values */
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -29,19 +63,23 @@ export const Contact = () => {
     whatsapp: "",
     message: "",
   });
+  
+  /** Form submission loading state */
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
 
+  /**
+   * Handles form submission
+   * Validates data and sends to edge function for processing
+   */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
     try {
-      // Validate form data
       const validated = contactSchema.parse(formData);
 
-      // Call edge function
-      const { data, error } = await supabase.functions.invoke("send-contact-confirmation", {
+      const { error } = await supabase.functions.invoke("send-contact-confirmation", {
         body: validated,
       });
 
@@ -52,7 +90,6 @@ export const Contact = () => {
         description: "Thank you for reaching out. I'll get back to you soon!",
       });
 
-      // Reset form
       setFormData({
         name: "",
         email: "",
@@ -60,11 +97,12 @@ export const Contact = () => {
         whatsapp: "",
         message: "",
       });
-    } catch (error: any) {
+    } catch (error: unknown) {
       console.error("Contact form error:", error);
+      const errorMessage = error instanceof Error ? error.message : "Please try again later.";
       toast({
         title: "Error sending message",
-        description: error.message || "Please try again later.",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {
@@ -72,6 +110,7 @@ export const Contact = () => {
     }
   };
 
+  /** Opens WhatsApp with pre-filled message */
   const handleWhatsAppClick = () => {
     const phone = "919341494320";
     const message = encodeURIComponent("Hi Abhinav! I found your portfolio and would like to connect.");
@@ -84,6 +123,7 @@ export const Contact = () => {
         "max-w-6xl mx-auto transition-all duration-1000",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       )}>
+        {/* Section Header */}
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Get In Touch</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
@@ -93,9 +133,11 @@ export const Contact = () => {
         </div>
 
         <div className="grid md:grid-cols-2 gap-12">
+          {/* Contact Form */}
           <div className="space-y-8 animate-fade-in-left">
             <Card className="p-6 bg-card hover-glow-border">
               <form onSubmit={handleSubmit} className="space-y-6">
+                {/* Name Field */}
                 <div className="space-y-2">
                   <Label htmlFor="name">
                     Name <span className="text-destructive">*</span>
@@ -110,6 +152,7 @@ export const Contact = () => {
                   />
                 </div>
 
+                {/* Email Field */}
                 <div className="space-y-2">
                   <Label htmlFor="email">
                     Email <span className="text-destructive">*</span>
@@ -125,6 +168,7 @@ export const Contact = () => {
                   />
                 </div>
 
+                {/* Company Field */}
                 <div className="space-y-2">
                   <Label htmlFor="company">Company/Organization (Optional)</Label>
                   <Input
@@ -136,6 +180,7 @@ export const Contact = () => {
                   />
                 </div>
 
+                {/* WhatsApp Field */}
                 <div className="space-y-2">
                   <Label htmlFor="whatsapp">WhatsApp Number (Optional)</Label>
                   <Input
@@ -147,6 +192,7 @@ export const Contact = () => {
                   />
                 </div>
 
+                {/* Message Field */}
                 <div className="space-y-2">
                   <Label htmlFor="message">Message (Optional)</Label>
                   <Textarea
@@ -159,6 +205,7 @@ export const Contact = () => {
                   />
                 </div>
 
+                {/* Submit Button */}
                 <Button 
                   type="submit" 
                   className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90"
@@ -177,7 +224,9 @@ export const Contact = () => {
             </Card>
           </div>
 
+          {/* Contact Information Cards */}
           <div className="space-y-6 animate-fade-in-right">
+            {/* Email Card */}
             <Card className="p-6 bg-card hover-glow-border">
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-primary/10 rounded-lg">
@@ -192,6 +241,7 @@ export const Contact = () => {
               </div>
             </Card>
 
+            {/* WhatsApp Card */}
             <Card className="p-6 bg-card hover-glow-border">
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-primary/10 rounded-lg">
@@ -209,6 +259,7 @@ export const Contact = () => {
               </div>
             </Card>
 
+            {/* Location Card */}
             <Card className="p-6 bg-card hover-glow-border">
               <div className="flex items-start gap-4">
                 <div className="p-3 bg-primary/10 rounded-lg">
@@ -223,6 +274,7 @@ export const Contact = () => {
               </div>
             </Card>
 
+            {/* Call-to-Action Card */}
             <Card className="p-8 bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/20 hover-glow-border">
               <h3 className="font-bold text-xl mb-4">Let's Build Something Amazing Together!</h3>
               <p className="text-muted-foreground">

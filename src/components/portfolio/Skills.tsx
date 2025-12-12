@@ -1,3 +1,21 @@
+/**
+ * Skills.tsx - Skills & Expertise Section Component
+ * 
+ * Displays technical skills organized by category with:
+ * - Progress bars showing proficiency levels
+ * - Hover effects with scale and glow animations
+ * - Scroll-reveal animation on viewport entry
+ * 
+ * Dependencies:
+ * - @/components/ui/card: Styled card component
+ * - @/components/ui/progress: Progress bar component
+ * - @/hooks/use-scroll-reveal: Intersection Observer hook for animations
+ * - @/lib/utils: Utility functions (cn for classname merging)
+ * 
+ * @component
+ * @file src/components/portfolio/Skills.tsx
+ */
+
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
@@ -5,6 +23,8 @@ import { cn } from "@/lib/utils";
 
 export const Skills = () => {
   const { ref, isVisible } = useScrollReveal();
+
+  /** Skills organized by category with proficiency levels (0-100) */
   const skillCategories = [
     {
       category: "Programming Languages",
@@ -57,11 +77,13 @@ export const Skills = () => {
         "max-w-6xl mx-auto transition-all duration-1000",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       )}>
+        {/* Section Header */}
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Skills & Expertise</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
         </div>
 
+        {/* Skills Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillCategories.map((category, categoryIndex) => (
             <Card 

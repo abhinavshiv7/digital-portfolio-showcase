@@ -1,3 +1,28 @@
+/**
+ * Projects.tsx - Featured Projects Carousel Component
+ * 
+ * Displays projects in an interactive carousel with:
+ * - Infinite loop scrolling
+ * - Mouse wheel/trackpad navigation with debouncing
+ * - Previous/Next arrow buttons
+ * - Active card scaling and opacity effects
+ * 
+ * Scroll Sensitivity:
+ * - scrollThreshold: Minimum ms between scroll actions (300ms)
+ * - threshold: Minimum delta for triggering scroll (15px)
+ * 
+ * Dependencies:
+ * - @/components/ui/card: Styled card component
+ * - @/components/ui/badge: Tag badges for project technologies
+ * - @/components/ui/button: Action buttons
+ * - @/components/ui/carousel: Embla carousel components
+ * - @/hooks/use-scroll-reveal: Intersection Observer hook for animations
+ * - lucide-react: Icons (ExternalLink, Github)
+ * 
+ * @component
+ * @file src/components/portfolio/Projects.tsx
+ */
+
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -16,21 +41,28 @@ import { useEffect, useState, useCallback, useRef } from "react";
 
 export const Projects = () => {
   const { ref, isVisible } = useScrollReveal();
+  /** Embla carousel API instance */
   const [api, setApi] = useState<CarouselApi>();
+  /** Currently active slide index */
   const [current, setCurrent] = useState(0);
+  /** Timestamp of last scroll action for debouncing */
   const lastScrollTime = useRef<number>(0);
-  const scrollThreshold = 300; // Minimum ms between scroll actions
+  /** Minimum milliseconds between scroll actions */
+  const scrollThreshold = 300;
 
+  /**
+   * Handles mouse wheel/trackpad scrolling with debouncing
+   * Prevents rapid navigation by enforcing minimum time between scrolls
+   */
   const handleWheel = useCallback((e: WheelEvent) => {
     if (!api) return;
     e.preventDefault();
     
     const now = Date.now();
     if (now - lastScrollTime.current < scrollThreshold) {
-      return; // Ignore scroll if too soon after last scroll
+      return;
     }
     
-    // Only trigger on significant scroll movements
     const threshold = 15;
     if (Math.abs(e.deltaX) > threshold || Math.abs(e.deltaY) > threshold) {
       lastScrollTime.current = now;
@@ -43,6 +75,7 @@ export const Projects = () => {
     }
   }, [api]);
 
+  /** Project data - featured projects to display */
   const projects = [
     {
       title: "FitLife Planner & AI Assistant",
@@ -86,6 +119,7 @@ export const Projects = () => {
     }
   ];
 
+  /** Syncs current slide index with carousel API */
   useEffect(() => {
     if (!api) return;
 
@@ -96,6 +130,7 @@ export const Projects = () => {
     });
   }, [api]);
 
+  /** Attaches wheel event listener to carousel element */
   useEffect(() => {
     const carouselElement = document.getElementById("projects-carousel");
     if (!carouselElement) return;
@@ -112,6 +147,7 @@ export const Projects = () => {
         "max-w-6xl mx-auto transition-all duration-1000",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       )}>
+        {/* Section Header */}
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Featured Projects</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
@@ -120,6 +156,7 @@ export const Projects = () => {
           </p>
         </div>
 
+        {/* Projects Carousel */}
         <div id="projects-carousel">
           <Carousel
             setApi={setApi}
@@ -137,6 +174,7 @@ export const Projects = () => {
                     current === index ? "scale-100 opacity-100" : "scale-95 opacity-50"
                   )}>
                     <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 bg-card hover-glow-border">
+                      {/* Project Image */}
                       <div className="relative h-48 overflow-hidden">
                         <img 
                           src={project.image} 
@@ -146,10 +184,12 @@ export const Projects = () => {
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                       </div>
                       
+                      {/* Project Details */}
                       <div className="p-6 space-y-4">
                         <h3 className="text-xl font-bold">{project.title}</h3>
                         <p className="text-muted-foreground">{project.description}</p>
                         
+                        {/* Technology Tags */}
                         <div className="flex flex-wrap gap-2">
                           {project.tags.map((tag, tagIndex) => (
                             <Badge key={tagIndex} variant="secondary">
@@ -158,6 +198,7 @@ export const Projects = () => {
                           ))}
                         </div>
 
+                        {/* Action Buttons */}
                         <div className="flex gap-4 pt-4">
                           <Button variant="outline" size="sm" asChild>
                             <a href={project.github} target="_blank" rel="noopener noreferrer">
