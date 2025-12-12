@@ -12,21 +12,34 @@ import {
   CarouselPrevious,
   type CarouselApi,
 } from "@/components/ui/carousel";
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, useRef } from "react";
 
 export const Projects = () => {
   const { ref, isVisible } = useScrollReveal();
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
+  const lastScrollTime = useRef<number>(0);
+  const scrollThreshold = 500; // Minimum ms between scroll actions
 
   const handleWheel = useCallback((e: WheelEvent) => {
     if (!api) return;
     e.preventDefault();
     
-    if (e.deltaX > 0 || e.deltaY > 0) {
-      api.scrollNext();
-    } else if (e.deltaX < 0 || e.deltaY < 0) {
-      api.scrollPrev();
+    const now = Date.now();
+    if (now - lastScrollTime.current < scrollThreshold) {
+      return; // Ignore scroll if too soon after last scroll
+    }
+    
+    // Only trigger on significant scroll movements
+    const threshold = 30;
+    if (Math.abs(e.deltaX) > threshold || Math.abs(e.deltaY) > threshold) {
+      lastScrollTime.current = now;
+      
+      if (e.deltaX > 0 || e.deltaY > 0) {
+        api.scrollNext();
+      } else if (e.deltaX < 0 || e.deltaY < 0) {
+        api.scrollPrev();
+      }
     }
   }, [api]);
 
