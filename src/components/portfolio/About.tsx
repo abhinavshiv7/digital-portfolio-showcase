@@ -1,3 +1,21 @@
+/**
+ * About.tsx - About Me Section Component
+ * 
+ * Displays personal introduction with:
+ * - Bio paragraphs about background and expertise
+ * - Highlight cards showcasing key strengths
+ * - Scroll-reveal animation on viewport entry
+ * 
+ * Dependencies:
+ * - @/components/ui/card: Styled card component
+ * - @/hooks/use-scroll-reveal: Intersection Observer hook for animations
+ * - @/lib/utils: Utility functions (cn for classname merging)
+ * - lucide-react: Icons (Code2, Lightbulb, Rocket)
+ * 
+ * @component
+ * @file src/components/portfolio/About.tsx
+ */
+
 import { Card } from "@/components/ui/card";
 import { Code2, Lightbulb, Rocket } from "lucide-react";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
@@ -5,6 +23,8 @@ import { cn } from "@/lib/utils";
 
 export const About = () => {
   const { ref, isVisible } = useScrollReveal();
+
+  /** Highlight cards data - key strengths displayed as cards */
   const highlights = [
     {
       icon: Code2,
@@ -29,12 +49,14 @@ export const About = () => {
         "max-w-6xl mx-auto transition-all duration-1000",
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
       )}>
+        {/* Section Header */}
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl font-bold mb-4">About Me</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
         </div>
 
         <div className="grid md:grid-cols-2 gap-12 items-center mb-12">
+          {/* Bio Paragraphs */}
           <div className="space-y-6 animate-fade-in-left">
             <p className="text-lg text-muted-foreground leading-relaxed">
               I'm a Cloud Engineering student specializing in AWS, Azure, and GCP. With hands-on 
@@ -49,6 +71,7 @@ export const About = () => {
             </p>
           </div>
 
+          {/* Highlight Cards */}
           <div className="grid gap-6 animate-fade-in-right">
             {highlights.map((highlight, index) => (
               <Card 

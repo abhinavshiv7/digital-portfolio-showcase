@@ -1,3 +1,24 @@
+/**
+ * Hero.tsx - Main Landing Section Component
+ * 
+ * This component renders the hero section with:
+ * - Responsive navigation bar (desktop horizontal / mobile hamburger menu)
+ * - Personal introduction with name and title
+ * - Profile image
+ * - Call-to-action button
+ * 
+ * Navigation automatically switches to hamburger menu when items wrap to
+ * multiple lines (detected via scroll height comparison).
+ * 
+ * Dependencies:
+ * - @/components/ui/button: Styled button component
+ * - @/components/ui/sheet: Slide-out menu for mobile navigation
+ * - @/assets/profile-portrait.jpg: Profile image asset
+ * 
+ * @component
+ * @file src/components/portfolio/Hero.tsx
+ */
+
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
@@ -5,18 +26,23 @@ import profileImage from "@/assets/profile-portrait.jpg";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 
 export const Hero = () => {
+  /** Controls mobile menu open/close state */
   const [isOpen, setIsOpen] = useState(false);
+  /** Determines if hamburger menu should be shown (when nav items wrap) */
   const [useHamburger, setUseHamburger] = useState(false);
+  /** Reference to navigation list for overflow detection */
   const navRef = useRef<HTMLUListElement>(null);
+  /** Reference to navigation container element */
   const containerRef = useRef<HTMLElement>(null);
 
+  /**
+   * Smoothly scrolls to a section by ID
+   * Closes mobile menu first with delay to ensure proper scroll behavior
+   */
   const scrollToSection = (id: string) => {
-    // Close sheet first
     setIsOpen(false);
     
-    // Store the target ID to scroll after sheet closes
     setTimeout(() => {
-      // Ensure body scroll is restored
       document.body.style.overflow = '';
       document.body.style.pointerEvents = '';
       
@@ -31,6 +57,7 @@ export const Hero = () => {
     }, 350);
   };
 
+  /** Navigation items in display order matching section order on page */
   const navItems = [
     { label: "About", id: "about" },
     { label: "Projects", id: "projects" },
@@ -41,20 +68,17 @@ export const Hero = () => {
     { label: "Contact", id: "contact" },
   ];
 
+  /** Detects if navigation items wrap to multiple lines and switches to hamburger menu */
   useEffect(() => {
     const checkOverflow = () => {
       if (navRef.current) {
         const navElement = navRef.current;
-        // Check if content wraps to multiple lines by comparing scrollHeight with clientHeight
         const isWrapping = navElement.scrollHeight > navElement.clientHeight + 10;
         setUseHamburger(isWrapping);
       }
     };
 
-    // Initial check
     checkOverflow();
-
-    // Check on resize
     window.addEventListener("resize", checkOverflow);
     return () => window.removeEventListener("resize", checkOverflow);
   }, []);
@@ -80,7 +104,7 @@ export const Hero = () => {
           ))}
         </ul>
 
-        {/* Mobile/Hamburger Navigation - shown when items don't fit in one line */}
+        {/* Mobile Hamburger Navigation - shown when items don't fit in one line */}
         {useHamburger && (
           <div className="flex justify-start">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
@@ -116,7 +140,7 @@ export const Hero = () => {
         )}
       </nav>
 
-      {/* Main Content */}
+      {/* Main Hero Content */}
       <div className="px-6 md:px-12 lg:px-16 min-h-screen flex items-center">
         <div className="grid md:grid-cols-2 gap-8 lg:gap-16 items-center w-full max-w-7xl mx-auto">
           {/* Left Column - Text Content */}

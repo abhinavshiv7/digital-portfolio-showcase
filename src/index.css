@@ -1,111 +1,120 @@
+/**
+ * index.css - Global Design System & Styles
+ * 
+ * This file defines the core design system including:
+ * - Color tokens (HSL format)
+ * - Gradient tokens
+ * - Shadow tokens
+ * - Transition tokens
+ * - Custom utility classes
+ * 
+ * Color Scheme:
+ * - Background: Deep dark blue (#111827 equivalent)
+ * - Foreground: White (#ffffff)
+ * - Primary: Bright pastel green (#01c16a equivalent)
+ * 
+ * Custom Utilities:
+ * - .hover-glow-border: Rotating border glow effect on hover
+ * 
+ * @file src/index.css
+ */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
-
 @layer base {
+  /* Light/Default Theme Variables */
   :root {
+    /* Base Colors */
     --background: 222 47% 11%;
     --foreground: 0 0% 100%;
 
+    /* Card Colors */
     --card: 222 47% 14%;
     --card-foreground: 0 0% 100%;
 
+    /* Popover Colors */
     --popover: 222 47% 14%;
     --popover-foreground: 0 0% 100%;
 
+    /* Primary Colors - Bright Pastel Green */
     --primary: 156 99% 38%;
     --primary-foreground: 222 47% 11%;
     --primary-glow: 156 90% 50%;
 
+    /* Secondary Colors */
     --secondary: 222 40% 20%;
     --secondary-foreground: 0 0% 100%;
 
+    /* Muted Colors */
     --muted: 222 40% 18%;
     --muted-foreground: 222 20% 65%;
 
+    /* Accent Colors */
     --accent: 156 99% 38%;
     --accent-foreground: 222 47% 11%;
 
+    /* Destructive Colors */
     --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 100%;
 
+    /* Border & Input Colors */
     --border: 222 30% 25%;
     --input: 222 30% 25%;
     --ring: 156 99% 38%;
 
+    /* Border Radius */
     --radius: 0.5rem;
 
-    /* Gradient tokens */
+    /* Gradient Tokens */
     --gradient-primary: linear-gradient(135deg, hsl(222 47% 11%), hsl(222 47% 18%));
     --gradient-hero: linear-gradient(180deg, hsl(222 47% 11%), hsl(222 47% 14%));
 
-    /* Shadow tokens */
+    /* Shadow Tokens */
     --shadow-elegant: 0 10px 30px -10px hsl(156 99% 38% / 0.3);
     --shadow-glow: 0 0 40px hsl(156 90% 50% / 0.4);
 
-    /* Transition tokens */
+    /* Transition Tokens */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
+    /* Sidebar Colors */
     --sidebar-background: 222 47% 14%;
-
     --sidebar-foreground: 0 0% 100%;
-
     --sidebar-primary: 156 99% 38%;
-
     --sidebar-primary-foreground: 222 47% 11%;
-
     --sidebar-accent: 222 40% 20%;
-
     --sidebar-accent-foreground: 0 0% 100%;
-
     --sidebar-border: 222 30% 25%;
-
     --sidebar-ring: 156 99% 38%;
   }
 
+  /* Dark Theme Variables (same as light for this dark-themed site) */
   .dark {
     --background: 222 47% 11%;
     --foreground: 0 0% 100%;
-
     --card: 222 47% 14%;
     --card-foreground: 0 0% 100%;
-
     --popover: 222 47% 14%;
     --popover-foreground: 0 0% 100%;
-
     --primary: 156 99% 38%;
     --primary-foreground: 222 47% 11%;
     --primary-glow: 156 90% 50%;
-
     --secondary: 222 40% 20%;
     --secondary-foreground: 0 0% 100%;
-
     --muted: 222 40% 18%;
     --muted-foreground: 222 20% 65%;
-
     --accent: 156 99% 38%;
     --accent-foreground: 222 47% 11%;
-
     --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 100%;
-
     --border: 222 30% 25%;
     --input: 222 30% 25%;
     --ring: 156 99% 38%;
-
-    /* Gradient tokens */
     --gradient-primary: linear-gradient(135deg, hsl(222 47% 11%), hsl(222 47% 18%));
     --gradient-hero: linear-gradient(180deg, hsl(222 47% 11%), hsl(222 47% 14%));
-
-    /* Shadow tokens */
     --shadow-elegant: 0 10px 30px -10px hsl(156 99% 38% / 0.3);
     --shadow-glow: 0 0 40px hsl(156 90% 50% / 0.4);
-
-    /* Transition tokens */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     --sidebar-background: 222 47% 14%;
     --sidebar-foreground: 0 0% 100%;
@@ -118,6 +127,7 @@ All colors MUST be HSL.
   }
 }
 
+/* Base Element Styles */
 @layer base {
   * {
     @apply border-border;
@@ -128,13 +138,24 @@ All colors MUST be HSL.
   }
 }
 
-/* Rotating border glow effect */
+/**
+ * CSS Property for Rotating Border Animation
+ * Required for the hover-glow-border effect
+ */
 @property --border-angle {
   syntax: "<angle>";
   initial-value: 0deg;
   inherits: false;
 }
 
+/**
+ * Rotating Border Glow Effect
+ * 
+ * Creates a clockwise rotating border with glow on hover.
+ * Uses conic-gradient for the rotating effect and box-shadow for glow.
+ * 
+ * Usage: Add class "hover-glow-border" to any element
+ */
 @layer utilities {
   .hover-glow-border {
     position: relative;
@@ -145,6 +166,7 @@ All colors MUST be HSL.
     isolation: isolate;
   }
 
+  /* Rotating border gradient overlay */
   .hover-glow-border::before {
     content: "";
     position: absolute;
@@ -171,6 +193,7 @@ All colors MUST be HSL.
     pointer-events: none;
   }
 
+  /* Glow shadow overlay */
   .hover-glow-border::after {
     content: "";
     position: absolute;
@@ -183,21 +206,25 @@ All colors MUST be HSL.
     box-shadow: 0 0 20px 8px hsl(156 99% 38% / 0.3);
   }
 
+  /* Hover state - show rotating border */
   .hover-glow-border:hover::before {
     opacity: 1;
     animation: border-rotate 3s linear infinite;
   }
 
+  /* Hover state - show glow */
   .hover-glow-border:hover::after {
     opacity: 1;
     animation: border-rotate 3s linear infinite;
   }
 
+  /* Hover state - hide default border */
   .hover-glow-border:hover {
     border-color: transparent;
   }
 }
 
+/* Border rotation keyframes */
 @keyframes border-rotate {
   0% {
     --border-angle: 0deg;
