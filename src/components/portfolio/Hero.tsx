@@ -1,25 +1,34 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Menu, X } from "lucide-react";
 import profileImage from "@/assets/profile-portrait.jpg";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 
 export const Hero = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    setIsOpen(false);
   };
+
+  const navItems = [
+    { label: "About", id: "about" },
+    { label: "Skills", id: "skills" },
+    { label: "Tools", id: "tools" },
+    { label: "Certifications", id: "experience" },
+    { label: "Projects", id: "projects" },
+    { label: "Education", id: "education" },
+    { label: "Contact", id: "contact" },
+  ];
 
   return (
     <section className="relative min-h-screen">
       {/* Top Navigation Bar */}
       <nav className="absolute top-0 left-0 right-0 z-20 px-6 md:px-12 lg:px-16 py-6 md:py-8">
-        <ul className="flex justify-center items-center gap-6 md:gap-10 flex-wrap">
-          {[
-            { label: "About", id: "about" },
-            { label: "Skills", id: "skills" },
-            { label: "Tools", id: "tools" },
-            { label: "Certifications", id: "certifications" },
-            { label: "Projects", id: "projects" },
-            { label: "Education", id: "education" },
-            { label: "Contact", id: "contact" },
-          ].map((item) => (
+        {/* Desktop Navigation */}
+        <ul className="hidden md:flex justify-center items-center gap-6 md:gap-10 flex-wrap">
+          {navItems.map((item) => (
             <li key={item.id}>
               <button
                 onClick={() => scrollToSection(item.id)}
@@ -30,6 +39,33 @@ export const Hero = () => {
             </li>
           ))}
         </ul>
+
+        {/* Mobile Navigation */}
+        <div className="md:hidden flex justify-start">
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
+              <button className="p-2 text-foreground hover:text-primary transition-colors">
+                <Menu className="h-6 w-6" />
+              </button>
+            </SheetTrigger>
+            <SheetContent side="left" className="w-64 bg-background border-border">
+              <nav className="mt-8">
+                <ul className="space-y-4">
+                  {navItems.map((item) => (
+                    <li key={item.id}>
+                      <button
+                        onClick={() => scrollToSection(item.id)}
+                        className="text-lg text-foreground/80 hover:text-primary transition-colors font-medium tracking-wide w-full text-left py-2"
+                      >
+                        {item.label}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            </SheetContent>
+          </Sheet>
+        </div>
       </nav>
 
       {/* Main Content */}
