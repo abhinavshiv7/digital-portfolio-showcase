@@ -11,8 +11,11 @@ export const Hero = () => {
   const containerRef = useRef<HTMLElement>(null);
 
   const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
     setIsOpen(false);
+    // Small delay to allow sheet to close before scrolling
+    setTimeout(() => {
+      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+    }, 150);
   };
 
   const navItems = [
