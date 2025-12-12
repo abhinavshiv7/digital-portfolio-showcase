@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
 import profileImage from "@/assets/profile-portrait.jpg";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 
 export const Hero = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -11,11 +11,15 @@ export const Hero = () => {
   const containerRef = useRef<HTMLElement>(null);
 
   const scrollToSection = (id: string) => {
+    // Close sheet first
     setIsOpen(false);
-    // Small delay to allow sheet to close before scrolling
+    // Longer delay to ensure sheet fully closes before scrolling
     setTimeout(() => {
-      document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
-    }, 150);
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 300);
   };
 
   const navItems = [
@@ -77,12 +81,18 @@ export const Hero = () => {
                 </button>
               </SheetTrigger>
               <SheetContent side="left" className="w-64 bg-background border-border">
+                <SheetTitle className="sr-only">Navigation Menu</SheetTitle>
                 <nav className="mt-8">
                   <ul className="space-y-4">
                     {navItems.map((item) => (
                       <li key={item.id}>
                         <button
-                          onClick={() => scrollToSection(item.id)}
+                          type="button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            scrollToSection(item.id);
+                          }}
                           className="text-lg text-foreground/80 hover:text-primary transition-colors font-medium tracking-wide w-full text-left py-2"
                         >
                           {item.label}
