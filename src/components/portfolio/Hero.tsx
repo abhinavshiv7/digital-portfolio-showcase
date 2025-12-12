@@ -33,10 +33,10 @@ export const Hero = () => {
 
   const navItems = [
     { label: "About", id: "about" },
+    { label: "Projects", id: "projects" },
     { label: "Skills", id: "skills" },
     { label: "Tools", id: "tools" },
     { label: "Certifications", id: "experience" },
-    { label: "Projects", id: "projects" },
     { label: "Education", id: "education" },
     { label: "Contact", id: "contact" },
   ];
