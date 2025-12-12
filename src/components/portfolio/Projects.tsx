@@ -19,7 +19,7 @@ export const Projects = () => {
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
   const lastScrollTime = useRef<number>(0);
-  const scrollThreshold = 500; // Minimum ms between scroll actions
+  const scrollThreshold = 300; // Minimum ms between scroll actions
 
   const handleWheel = useCallback((e: WheelEvent) => {
     if (!api) return;
@@ -31,7 +31,7 @@ export const Projects = () => {
     }
     
     // Only trigger on significant scroll movements
-    const threshold = 30;
+    const threshold = 15;
     if (Math.abs(e.deltaX) > threshold || Math.abs(e.deltaY) > threshold) {
       lastScrollTime.current = now;
       
