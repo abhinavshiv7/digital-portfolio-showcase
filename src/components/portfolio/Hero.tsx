@@ -13,13 +13,22 @@ export const Hero = () => {
   const scrollToSection = (id: string) => {
     // Close sheet first
     setIsOpen(false);
-    // Longer delay to ensure sheet fully closes before scrolling
+    
+    // Store the target ID to scroll after sheet closes
     setTimeout(() => {
+      // Ensure body scroll is restored
+      document.body.style.overflow = '';
+      document.body.style.pointerEvents = '';
+      
       const element = document.getElementById(id);
       if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
+        const offsetTop = element.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth"
+        });
       }
-    }, 300);
+    }, 350);
   };
 
   const navItems = [
