@@ -1,15 +1,17 @@
 /**
- * Skills.tsx - Skills & Expertise Section Component
+ * Skills.tsx - Skills & Expertise Section Component with Parallax
  * 
  * Displays technical skills organized by category with:
  * - Progress bars showing proficiency levels
  * - Hover effects with scale and glow animations
  * - Scroll-reveal animation on viewport entry
+ * - Staggered card reveal animations
  * 
  * Dependencies:
  * - @/components/ui/card: Styled card component
  * - @/components/ui/progress: Progress bar component
  * - @/hooks/use-scroll-reveal: Intersection Observer hook for animations
+ * - @/hooks/use-parallax-scroll: Parallax scroll effect hook
  * - @/lib/utils: Utility functions (cn for classname merging)
  * 
  * @component
@@ -19,10 +21,26 @@
 import { Card } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { useParallaxScroll } from "@/hooks/use-parallax-scroll";
 import { cn } from "@/lib/utils";
+import { useRef, useEffect, useState } from "react";
 
 export const Skills = () => {
   const { ref, isVisible } = useScrollReveal();
+  const { scrollY } = useParallaxScroll();
+  const sectionRef = useRef<HTMLElement>(null);
+  const [sectionTop, setSectionTop] = useState(0);
+
+  /** Calculate section position for parallax offset */
+  useEffect(() => {
+    if (sectionRef.current) {
+      setSectionTop(sectionRef.current.offsetTop);
+    }
+  }, []);
+
+  /** Calculate parallax based on scroll relative to section */
+  const relativeScroll = Math.max(0, scrollY - sectionTop + window.innerHeight);
+  const headerParallax = Math.min(0, -30 + relativeScroll * 0.05);
 
   /** Skills organized by category with proficiency levels (0-100) */
   const skillCategories = [
@@ -72,24 +90,40 @@ export const Skills = () => {
   ];
 
   return (
-    <section id="skills" className="py-20 px-4" ref={ref}>
-      <div className={cn(
-        "max-w-6xl mx-auto transition-all duration-1000",
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      )}>
-        {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-in">
+    <section id="skills" className="py-20 px-4 overflow-hidden" ref={sectionRef}>
+      <div 
+        ref={ref}
+        className={cn(
+          "max-w-6xl mx-auto transition-all duration-1000",
+          isVisible ? "opacity-100" : "opacity-0"
+        )}
+      >
+        {/* Section Header with parallax */}
+        <div 
+          className={cn(
+            "text-center mb-16 transition-all duration-700",
+            isVisible ? "opacity-100" : "opacity-0"
+          )}
+          style={{ 
+            transform: isVisible ? `translateY(${headerParallax}px)` : 'translateY(30px)',
+          }}
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Skills & Expertise</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
         </div>
 
-        {/* Skills Grid */}
+        {/* Skills Grid with staggered reveal */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {skillCategories.map((category, categoryIndex) => (
             <Card 
               key={categoryIndex}
-              className="p-6 space-y-6 hover:scale-105 hover:-translate-y-2 transition-all duration-300 ease-out animate-fade-in bg-card cursor-pointer hover-glow-border"
-              style={{ animationDelay: `${categoryIndex * 0.1}s` }}
+              className={cn(
+                "p-6 space-y-6 hover:scale-105 hover:-translate-y-2 transition-all duration-500 ease-out bg-card cursor-pointer hover-glow-border",
+                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-20"
+              )}
+              style={{ 
+                transitionDelay: isVisible ? `${categoryIndex * 0.1}s` : '0s',
+              }}
             >
               <h3 className="text-xl font-bold text-primary">{category.category}</h3>
               <div className="space-y-4">
@@ -99,7 +133,7 @@ export const Skills = () => {
                       <span className="font-medium">{skill.name}</span>
                       <span className="text-muted-foreground">{skill.level}%</span>
                     </div>
-                    <Progress value={skill.level} className="h-2" />
+                    <Progress value={isVisible ? skill.level : 0} className="h-2 transition-all duration-1000" style={{ transitionDelay: `${(categoryIndex * 0.1) + (skillIndex * 0.05)}s` }} />
                   </div>
                 ))}
               </div>
