@@ -1,11 +1,12 @@
 /**
- * Projects.tsx - Featured Projects Carousel Component
+ * Projects.tsx - Featured Projects Carousel Component with Parallax
  * 
  * Displays projects in an interactive carousel with:
  * - Infinite loop scrolling
  * - Mouse wheel/trackpad navigation with debouncing
  * - Previous/Next arrow buttons
  * - Active card scaling and opacity effects
+ * - Scroll-driven parallax header animation
  * 
  * Scroll Sensitivity:
  * - scrollThreshold: Minimum ms between scroll actions (300ms)
@@ -17,6 +18,7 @@
  * - @/components/ui/button: Action buttons
  * - @/components/ui/carousel: Embla carousel components
  * - @/hooks/use-scroll-reveal: Intersection Observer hook for animations
+ * - @/hooks/use-parallax-scroll: Parallax scroll effect hook
  * - lucide-react: Icons (ExternalLink, Github)
  * 
  * @component
@@ -28,6 +30,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github } from "lucide-react";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
+import { useParallaxScroll } from "@/hooks/use-parallax-scroll";
 import { cn } from "@/lib/utils";
 import {
   Carousel,
@@ -41,6 +44,10 @@ import { useEffect, useState, useCallback, useRef } from "react";
 
 export const Projects = () => {
   const { ref, isVisible } = useScrollReveal();
+  const { scrollY } = useParallaxScroll();
+  const sectionRef = useRef<HTMLElement>(null);
+  const [sectionTop, setSectionTop] = useState(0);
+  
   /** Embla carousel API instance */
   const [api, setApi] = useState<CarouselApi>();
   /** Currently active slide index */
@@ -49,6 +56,17 @@ export const Projects = () => {
   const lastScrollTime = useRef<number>(0);
   /** Minimum milliseconds between scroll actions */
   const scrollThreshold = 300;
+
+  /** Calculate section position for parallax offset */
+  useEffect(() => {
+    if (sectionRef.current) {
+      setSectionTop(sectionRef.current.offsetTop);
+    }
+  }, []);
+
+  /** Calculate horizontal parallax based on scroll relative to section */
+  const relativeScroll = Math.max(0, scrollY - sectionTop + window.innerHeight);
+  const headerParallax = Math.min(0, -30 + relativeScroll * 0.05);
 
   /**
    * Handles mouse wheel/trackpad scrolling with debouncing
@@ -142,13 +160,24 @@ export const Projects = () => {
   }, [handleWheel]);
 
   return (
-    <section id="projects" className="py-20 px-4" ref={ref}>
-      <div className={cn(
-        "max-w-6xl mx-auto transition-all duration-1000",
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-      )}>
-        {/* Section Header */}
-        <div className="text-center mb-16 animate-fade-in">
+    <section id="projects" className="py-20 px-4 overflow-hidden" ref={sectionRef}>
+      <div 
+        ref={ref}
+        className={cn(
+          "max-w-6xl mx-auto transition-all duration-1000",
+          isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        )}
+      >
+        {/* Section Header with parallax */}
+        <div 
+          className={cn(
+            "text-center mb-16 transition-all duration-700",
+            isVisible ? "opacity-100" : "opacity-0"
+          )}
+          style={{ 
+            transform: isVisible ? `translateY(${headerParallax}px)` : 'translateY(30px)',
+          }}
+        >
           <h2 className="text-4xl md:text-5xl font-bold mb-4">Featured Projects</h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto rounded-full" />
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
@@ -170,8 +199,8 @@ export const Projects = () => {
               {projects.map((project, index) => (
                 <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-4/5 lg:basis-3/5">
                   <div className={cn(
-                    "transition-all duration-300",
-                    current === index ? "scale-100 opacity-100" : "scale-95 opacity-50"
+                    "transition-all duration-500",
+                    current === index ? "scale-100 opacity-100" : "scale-90 opacity-40"
                   )}>
                     <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 bg-card hover-glow-border">
                       {/* Project Image */}
@@ -179,7 +208,7 @@ export const Projects = () => {
                         <img 
                           src={project.image} 
                           alt={project.title}
-                          className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                       </div>
