@@ -203,7 +203,7 @@ Distributed under the MIT License. See `LICENSE` for more information.
 -----
 
 <div align="center">
-<i>Built by Abhinav - Cloud Engineer</i>
+<i>Built by <b>Abhinav<b> - Cloud Engineer</i>
 </div>
 
 ```
