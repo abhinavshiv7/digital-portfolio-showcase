@@ -8,6 +8,10 @@
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-2088FF?style=for-the-badge&logo=github-actions&logoColor=white)
 
+<br/>
+
+[![View Live Portfolio](https://img.shields.io/badge/🚀_View_Live_Portfolio-Click_Here-2ea44f?style=for-the-badge)](https://portfolio-frontend-61038741313.asia-south2.run.app/)
+
 </div>
 
 ## 📌 Project Overview
@@ -95,70 +99,67 @@ resource "google_artifact_registry_repository" "my_repo" {
   format        = "DOCKER"
   depends_on    = [google_project_service.artifact_registry_api]
 }
-````
 
-### **3. CI/CD Pipeline (GitHub Actions)**
+```
 
-A fully automated pipeline (`.github/workflows/deploy.yml`) triggers on every push to the `main` branch.
+###**3. CI/CD Pipeline (GitHub Actions)**A fully automated pipeline (`.github/workflows/deploy.yml`) triggers on every push to the `main` branch.
 
-1.  **Auth:** Authenticates with GCP using the JSON Service Account Key stored in GitHub Secrets.
-2.  **Build:** Injects secrets via `--build-arg` and builds the Docker container.
-3.  **Push:** Uploads the tagged image to the private Google Artifact Registry.
-4.  **Deploy:** Updates Cloud Run with the new image revision and routes traffic.
+1. **Auth:** Authenticates with GCP using the JSON Service Account Key stored in GitHub Secrets.
+2. **Build:** Injects secrets via `--build-arg` and builds the Docker container.
+3. **Push:** Uploads the tagged image to the private Google Artifact Registry.
+4. **Deploy:** Updates Cloud Run with the new image revision and routes traffic.
 
------
+---
 
-## 📸 Project Screenshots
-<table align="center">
-  <tr>
-    <td align="center"><b>Live Deployment (Cloud Run)</b></td>
-    <td align="center"><b>CI/CD Pipeline Execution</b></td>
-  </tr>
-  <tr>
-    <td><img src="./screenshots/Webpage.png" width="400" alt="Live Site"></td>
-    <td><img src="./screenshots/Pipeline.png" width="400" alt="Pipeline"></td>
-  </tr>
-  <tr>
-    <td align="center"><i>Hosted on Google Cloud Run (asia-south2)</i></td>
-    <td align="center"><i>Automated Build & Deploy Workflow</i></td>
-  </tr>
-  <tr>
-    <td align="center"><b>Infrastructure as Code (Terraform)</b></td>
-    <td align="center"><b>Live Service Status</b></td>
-  </tr>
-  <tr>
-    <td><img src="./screenshots/GCP_Terraform.png" width="400" alt="Terraform"></td>
-    <td><img src="./screenshots/GCP_Cloud_Run.png" width="400" alt="Cloud Run"></td>
-  </tr>
-  <tr>
-    <td align="center"><i>Successful provisioning of IaC Resources</i></td>
-    <td align="center"><i>Healthy Service Revisions & Traffic Split</i></td>
-  </tr>
-  <tr>
-    <td align="center"><b>Operations Dashboard</b></td>
-    <td align="center"><b>Artifact Registry & Security</b></td>
-  </tr>
-  <tr>
-    <td><img src="./screenshots/GCP_Monitoring.png" width="400" alt="Monitoring"></td>
-    <td><img src="./screenshots/GCP_Artifact_Registry.png" width="400" alt="Security"></td>
-  </tr>
-  <tr>
-    <td align="center"><i>Real-time Latency & Traffic Analysis</i></td>
-    <td align="center"><i>Immutable Artifacts & Vulnerability Scan</i></td>
-  </tr>
+##📸 Project Screenshots<table align="center">
+<tr>
+<td align="center"><b>Live Deployment (Cloud Run)</b></td>
+<td align="center"><b>CI/CD Pipeline Execution</b></td>
+</tr>
+<tr>
+<td><img src="screenshots/webpage.jpg" width="400" alt="Live Site"></td>
+<td><img src="screenshots/pipeline.png" width="400" alt="Pipeline"></td>
+</tr>
+<tr>
+<td align="center"><i>Hosted on Google Cloud Run (asia-south2)</i></td>
+<td align="center"><i>Automated Build & Deploy Workflow</i></td>
+</tr>
+<tr>
+<td align="center"><b>Infrastructure as Code (Terraform)</b></td>
+<td align="center"><b>Live Service Status</b></td>
+</tr>
+<tr>
+<td><img src="screenshots/GCP_Terraform.png" width="400" alt="Terraform"></td>
+<td><img src="screenshots/GCP_cloud_run.png" width="400" alt="Cloud Run"></td>
+</tr>
+<tr>
+<td align="center"><i>Successful provisioning of IaC Resources</i></td>
+<td align="center"><i>Healthy Service Revisions & Traffic Split</i></td>
+</tr>
+<tr>
+<td align="center"><b>Operations Dashboard</b></td>
+<td align="center"><b>Artifact Registry & Security</b></td>
+</tr>
+<tr>
+<td><img src="screenshots/GCP_Monitoring.png" width="400" alt="Monitoring"></td>
+<td><img src="screenshots/GCP_Artifact_Registry.png" width="400" alt="Security"></td>
+</tr>
+<tr>
+<td align="center"><i>Real-time Latency & Traffic Analysis</i></td>
+<td align="center"><i>Immutable Artifacts & Vulnerability Scan</i></td>
+</tr>
 </table>
 
------
+---
 
-## 🛠 Local Development Setup
-
-To run this project locally using Docker (simulating the production environment):
+##🛠 Local Development SetupTo run this project locally using Docker (simulating the production environment):
 
 **1. Clone the repository**
 
 ```bash
 git clone [https://github.com/abhinavshiv7/digital-portfolio-showcase.git](https://github.com/abhinavshiv7/digital-portfolio-showcase.git)
 cd digital-portfolio-showcase
+
 ```
 
 **2. Build the Docker Image**
@@ -169,21 +170,21 @@ docker build \
   --build-arg VITE_SUPABASE_URL="your_url" \
   --build-arg VITE_SUPABASE_PUBLISHABLE_KEY="your_key" \
   -t portfolio-local .
+
 ```
 
 **3. Run the Container**
 
 ```bash
 docker run -d -p 8080:80 portfolio-local
+
 ```
 
 Visit `http://localhost:8080` to see the app running on Nginx.
 
------
+---
 
-## 📂 Project Structure
-
-```bash
+##📂 Project Structure```bash
 ├── .github/workflows
 │   └── deploy.yml          # CI/CD Pipeline Configuration
 ├── terraform-portfolio
@@ -192,19 +193,19 @@ Visit `http://localhost:8080` to see the app running on Nginx.
 ├── Dockerfile              # Multi-stage Docker instructions
 ├── nginx.conf              # Web Server configuration
 └── vite.config.ts          # Build tool configuration
+
 ```
 
------
+---
 
-## 📜 License
+##📜 LicenseDistributed under the MIT License. See `LICENSE` for more information.
 
-Distributed under the MIT License. See `LICENSE` for more information.
-
------
+---
 
 <div align="center">
-<i>Built by <b>Abhinav<b> - Cloud Engineer</i>
+<i>Built by Abhinav - Cloud Engineer</i>
 </div>
 
 ```
+
 ```
