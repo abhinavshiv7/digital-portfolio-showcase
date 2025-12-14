@@ -117,7 +117,7 @@ resource "google_artifact_registry_repository" "my_repo" {
 <td align="center"><b>CI/CD Pipeline Execution</b></td>
 </tr>
 <tr>
-<td><img src="screenshots/Webpage.jpg" width="400" alt="Live Site"></td>
+<td><img src="screenshots/Webpage.png" width="400" alt="Live Site"></td>
 <td><img src="screenshots/Pipeline.png" width="400" alt="Pipeline"></td>
 </tr>
 <tr>
