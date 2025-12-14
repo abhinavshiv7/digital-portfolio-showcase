@@ -130,7 +130,7 @@ resource "google_artifact_registry_repository" "my_repo" {
 </tr>
 <tr>
 <td><img src="screenshots/GCP_Terraform.png" width="400" alt="Terraform"></td>
-<td><img src="screenshots/GCP_Ploud_run.png" width="400" alt="Cloud Run"></td>
+<td><img src="screenshots/GCP_Cloud_run.png" width="400" alt="Cloud Run"></td>
 </tr>
 <tr>
 <td align="center"><i>Successful provisioning of IaC Resources</i></td>
