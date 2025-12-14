@@ -117,8 +117,8 @@ resource "google_artifact_registry_repository" "my_repo" {
 <td align="center"><b>CI/CD Pipeline Execution</b></td>
 </tr>
 <tr>
-<td><img src="screenshots/webpage.jpg" width="400" alt="Live Site"></td>
-<td><img src="screenshots/pipeline.png" width="400" alt="Pipeline"></td>
+<td><img src="screenshots/Webpage.jpg" width="400" alt="Live Site"></td>
+<td><img src="screenshots/Pipeline.png" width="400" alt="Pipeline"></td>
 </tr>
 <tr>
 <td align="center"><i>Hosted on Google Cloud Run (asia-south2)</i></td>
@@ -130,7 +130,7 @@ resource "google_artifact_registry_repository" "my_repo" {
 </tr>
 <tr>
 <td><img src="screenshots/GCP_Terraform.png" width="400" alt="Terraform"></td>
-<td><img src="screenshots/GCP_cloud_run.png" width="400" alt="Cloud Run"></td>
+<td><img src="screenshots/GCP_Ploud_run.png" width="400" alt="Cloud Run"></td>
 </tr>
 <tr>
 <td align="center"><i>Successful provisioning of IaC Resources</i></td>
