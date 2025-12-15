@@ -20,7 +20,7 @@ jobs:
       id-token: 'write'
 
     steps:
-      # 1. Checkout the code
+      # 1. Checkout the Code
       - name: Checkout
         uses: actions/checkout@v4
 
