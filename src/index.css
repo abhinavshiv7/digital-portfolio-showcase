@@ -235,29 +235,113 @@
 }
 
 /**
- * Meteor Animation Keyframes
+ * Meteor Shower Background Styles
  * 
- * Animates meteors diagonally across the screen:
- * - 0%: Start above and right of visible area, fully visible
- * - 12%: Fade out
- * - 15%: Move to bottom-left, stay invisible
- * - 100%: Remain invisible until loop restarts
+ * Creates an animated starfield with falling meteors.
+ * Container is fixed, behind content, and click-through.
  */
-@keyframes meteor {
+
+/* CONTAINER */
+.meteor-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+  background-image: radial-gradient(ellipse at top, #080e21 0%, #1b2735 95%);
+}
+
+/* STARS */
+.star {
+  width: 1px;
+  height: 1px;
+  background: transparent;
+  border-radius: 50%;
+  /* Creates a field of static stars */
+  box-shadow: 
+    100px 200px #fff, 
+    400px 500px #fff, 
+    800px 100px #fff, 
+    1200px 300px #fff, 
+    1600px 700px #fff,
+    300px 800px #fff,
+    950px 400px #fff,
+    50px 900px #fff,
+    150px 350px #fff,
+    520px 620px #fff,
+    870px 180px #fff,
+    1100px 450px #fff,
+    1450px 550px #fff,
+    200px 720px #fff,
+    680px 280px #fff,
+    1300px 820px #fff,
+    75px 480px #fff,
+    920px 90px #fff,
+    1550px 380px #fff,
+    350px 950px #fff,
+    600px 150px #fff,
+    1050px 680px #fff,
+    1750px 200px #fff,
+    450px 820px #fff,
+    780px 550px #fff,
+    1380px 120px #fff,
+    250px 600px #fff,
+    1180px 750px #fff,
+    550px 320px #fff,
+    1650px 480px #fff;
+}
+
+/* METEOR BASE STYLE */
+[class^="meteor-"] {
+  position: absolute;
+  top: 50px;
+  left: 50%;
+  width: 300px;
+  height: 1px;
+  transform: rotate(-45deg);
+  background-image: linear-gradient(to right, #fff, rgba(255, 255, 255, 0));
+  opacity: 0;
+  animation: meteor-fall linear infinite;
+}
+
+/* METEOR HEAD (The glowing dot) */
+[class^="meteor-"]::before {
+  content: "";
+  position: absolute;
+  width: 4px;
+  height: 5px;
+  border-radius: 50%;
+  margin-top: -2px;
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 0 15px 3px #fff;
+}
+
+/* ANIMATION KEYFRAMES - Fixed for movement */
+@keyframes meteor-fall {
   0% {
     opacity: 1;
-    margin-top: -300px;
-    margin-right: -300px;
+    transform: rotate(-45deg) translateX(0);
   }
-  12% {
-    opacity: 0;
-  }
-  15% {
-    margin-top: 300px;
-    margin-left: -600px;
-    opacity: 0;
+  70% {
+    opacity: 1;
   }
   100% {
     opacity: 0;
+    transform: rotate(-45deg) translateX(-1000px);
   }
 }
+
+/* INDIVIDUAL METEORS (Delays and Positions) */
+.meteor-1 { top: 100px; left: 20%; animation-duration: 4s; animation-delay: 0s; }
+.meteor-2 { top: 50px; left: 40%; animation-duration: 6s; animation-delay: 2s; }
+.meteor-3 { top: 150px; left: 60%; animation-duration: 3s; animation-delay: 5s; }
+.meteor-4 { top: 80px; left: 80%; animation-duration: 5s; animation-delay: 1s; }
+.meteor-5 { top: 200px; left: 10%; animation-duration: 7s; animation-delay: 3s; }
+.meteor-6 { top: 40px; left: 90%; animation-duration: 4.5s; animation-delay: 0.5s; }
+.meteor-7 { top: 300px; left: 30%; animation-duration: 3.5s; animation-delay: 4s; }
+.meteor-8 { top: 0px; left: 50%; animation-duration: 5.5s; animation-delay: 1.5s; }
+.meteor-9 { top: 120px; left: 70%; animation-duration: 6.5s; animation-delay: 2.5s; }
+.meteor-10 { top: 250px; left: 5%; animation-duration: 4.2s; animation-delay: 0.8s; }
