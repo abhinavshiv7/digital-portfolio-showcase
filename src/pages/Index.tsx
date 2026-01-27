@@ -26,10 +26,13 @@ import { Tools } from "@/components/portfolio/Tools";
 import { Experience } from "@/components/portfolio/Experience";
 import { Education } from "@/components/portfolio/Education";
 import { Contact } from "@/components/portfolio/Contact";
+import { MeteorShower } from "@/components/portfolio/MeteorShower";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-card/30 via-50% to-muted/40">
+      {/* Meteor shower background - fixed position, behind all content */}
+      <MeteorShower />
       <Hero />
       <About />
       <Projects />
