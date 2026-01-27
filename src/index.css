@@ -233,3 +233,31 @@
     --border-angle: 360deg;
   }
 }
+
+/**
+ * Meteor Animation Keyframes
+ * 
+ * Animates meteors diagonally across the screen:
+ * - 0%: Start above and right of visible area, fully visible
+ * - 12%: Fade out
+ * - 15%: Move to bottom-left, stay invisible
+ * - 100%: Remain invisible until loop restarts
+ */
+@keyframes meteor {
+  0% {
+    opacity: 1;
+    margin-top: -300px;
+    margin-right: -300px;
+  }
+  12% {
+    opacity: 0;
+  }
+  15% {
+    margin-top: 300px;
+    margin-left: -600px;
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
