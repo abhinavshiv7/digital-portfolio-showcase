@@ -160,7 +160,7 @@
  * Implementation Notes:
  * - Uses ::before pseudo-element for rotating gradient border
  * - Uses ::after pseudo-element for glow shadow effect
- * - Requires position: relative on the element
+ * - Border is drawn inside the element to work with overflow:hidden
  * - Animation runs on hover state only
  */
 @layer utilities {
@@ -170,22 +170,23 @@
     background: hsl(var(--card));
     border: 1px solid hsl(var(--border));
     transition: all 0.3s ease;
-    overflow: visible;
     isolation: isolate;
   }
 
-  /* Rotating border gradient overlay - visible on hover */
+  /* Rotating border gradient overlay - drawn inside to work with overflow:hidden */
   .hover-glow-border::before {
     content: "";
     position: absolute;
-    inset: -2px;
+    inset: 0;
     border-radius: inherit;
     padding: 2px;
     background: conic-gradient(
       from var(--border-angle),
-      transparent 25%,
-      hsl(156 99% 38%) 50%,
-      transparent 75%
+      transparent 20%,
+      hsl(156 99% 38%) 35%,
+      hsl(156 99% 50%) 50%,
+      hsl(156 99% 38%) 65%,
+      transparent 80%
     );
     -webkit-mask: 
       linear-gradient(#fff 0 0) content-box, 
@@ -197,21 +198,24 @@
     mask-composite: exclude;
     opacity: 0;
     transition: opacity 0.3s ease;
-    z-index: -1;
+    z-index: 1;
     pointer-events: none;
   }
 
-  /* Glow shadow overlay - visible on hover */
+  /* Glow shadow overlay - uniform glow on all sides */
   .hover-glow-border::after {
     content: "";
     position: absolute;
-    inset: 0;
+    inset: -1px;
     border-radius: inherit;
     opacity: 0;
     transition: opacity 0.3s ease;
-    z-index: -2;
+    z-index: -1;
     pointer-events: none;
-    box-shadow: 0 0 20px 8px hsl(156 99% 38% / 0.3);
+    box-shadow: 
+      0 0 15px 5px hsl(156 99% 38% / 0.25),
+      0 0 30px 10px hsl(156 99% 38% / 0.15),
+      inset 0 0 15px 5px hsl(156 99% 38% / 0.1);
   }
 
   /* Hover state - show and animate rotating border */
