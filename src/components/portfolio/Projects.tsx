@@ -202,7 +202,7 @@ export const Projects = () => {
                     "transition-all duration-500",
                     current === index ? "scale-100 opacity-100" : "scale-90 opacity-40"
                   )}>
-                    <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 bg-card hover-glow-border">
+                    <Card className="hover:shadow-xl transition-all duration-300 bg-card hover-glow-border overflow-visible">
                       {/* Project Image */}
                       <div className="relative h-48 overflow-hidden">
                         <img 
