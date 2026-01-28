@@ -24,7 +24,7 @@
 import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
-import profileImage from "@/assets/profile-portrait2.jpg";
+import profileImage from "@/assets/profile-portrait.jpg";
 import { Sheet, SheetContent, SheetTrigger, SheetTitle } from "@/components/ui/sheet";
 import { useParallaxScroll } from "@/hooks/use-parallax-scroll";
 
