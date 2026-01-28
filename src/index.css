@@ -141,6 +141,7 @@
 /**
  * CSS Property for Rotating Border Animation
  * Required for the hover-glow-border effect
+ * Note: @property has limited browser support, so we use keyframe animation as fallback
  */
 @property --border-angle {
   syntax: "<angle>";
@@ -155,9 +156,16 @@
  * Uses conic-gradient for the rotating effect and box-shadow for glow.
  * 
  * Usage: Add class "hover-glow-border" to any element
+ * 
+ * Implementation Notes:
+ * - Uses ::before pseudo-element for rotating gradient border
+ * - Uses ::after pseudo-element for glow shadow effect
+ * - Requires position: relative on the element
+ * - Animation runs on hover state only
  */
 @layer utilities {
   .hover-glow-border {
+    --border-angle: 0deg;
     position: relative;
     background: hsl(var(--card));
     border: 1px solid hsl(var(--border));
@@ -166,7 +174,7 @@
     isolation: isolate;
   }
 
-  /* Rotating border gradient overlay */
+  /* Rotating border gradient overlay - visible on hover */
   .hover-glow-border::before {
     content: "";
     position: absolute;
@@ -193,7 +201,7 @@
     pointer-events: none;
   }
 
-  /* Glow shadow overlay */
+  /* Glow shadow overlay - visible on hover */
   .hover-glow-border::after {
     content: "";
     position: absolute;
@@ -206,25 +214,28 @@
     box-shadow: 0 0 20px 8px hsl(156 99% 38% / 0.3);
   }
 
-  /* Hover state - show rotating border */
+  /* Hover state - show and animate rotating border */
   .hover-glow-border:hover::before {
     opacity: 1;
     animation: border-rotate 3s linear infinite;
   }
 
-  /* Hover state - show glow */
+  /* Hover state - show glow effect */
   .hover-glow-border:hover::after {
     opacity: 1;
-    animation: border-rotate 3s linear infinite;
   }
 
-  /* Hover state - hide default border */
+  /* Hover state - hide default border to show animated border */
   .hover-glow-border:hover {
     border-color: transparent;
   }
 }
 
-/* Border rotation keyframes */
+/**
+ * Border rotation keyframes
+ * Rotates the --border-angle custom property from 0deg to 360deg
+ * Creates the clockwise rotating border effect
+ */
 @keyframes border-rotate {
   0% {
     --border-angle: 0deg;
