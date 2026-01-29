@@ -270,31 +270,37 @@ export const Contact = () => {
               transform: isVisible ? `translateX(${-rightParallax}px)` : 'translateX(20px)',
             }}
           >
-            {/* Email Card */}
-            <Card 
-              className={cn(
-                "p-6 bg-card hover-glow-border transition-all duration-500",
-                isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
-              )}
-              style={{ transitionDelay: '0.4s' }}
+            {/* Email Card - Entire card clickable */}
+            <a 
+              href="mailto:abhinav.shiv7@gmail.com"
+              className="block"
             >
-              <div className="flex items-start gap-4">
-                <div className="p-3 bg-primary/10 rounded-lg">
-                  <Mail className="h-6 w-6 text-primary" />
+              <Card 
+                className={cn(
+                  "p-6 bg-card hover-glow-border transition-all duration-500 cursor-pointer",
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+                )}
+                style={{ transitionDelay: '0.4s' }}
+              >
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-primary/10 rounded-lg">
+                    <Mail className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg mb-1">Email</h3>
+                    <p className="text-muted-foreground group-hover:text-primary transition-colors">
+                      abhinav.shiv7@gmail.com
+                    </p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-semibold text-lg mb-1">Email</h3>
-                  <a href="mailto:abhinav.shiv7@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
-                    abhinav.shiv7@gmail.com
-                  </a>
-                </div>
-              </div>
-            </Card>
+              </Card>
+            </a>
 
-            {/* WhatsApp Card */}
+            {/* WhatsApp Card - Entire card clickable */}
             <Card 
+              onClick={handleWhatsAppClick}
               className={cn(
-                "p-6 bg-card hover-glow-border transition-all duration-500",
+                "p-6 bg-card hover-glow-border transition-all duration-500 cursor-pointer",
                 isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
               )}
               style={{ transitionDelay: '0.5s' }}
@@ -305,12 +311,9 @@ export const Contact = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold text-lg mb-1">WhatsApp</h3>
-                  <button
-                    onClick={handleWhatsAppClick}
-                    className="text-muted-foreground hover:text-primary transition-colors"
-                  >
+                  <p className="text-muted-foreground">
                     Click to message on WhatsApp
-                  </button>
+                  </p>
                 </div>
               </div>
             </Card>
