@@ -220,18 +220,6 @@ export const Hero = () => {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <div 
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0 animate-fade-in"
-        style={{ 
-          animationDelay: "1.2s",
-          opacity: Math.max(0, 1 - scrollY / 200)
-        }}
-      >
-        <div className="w-6 h-10 border-2 border-foreground/30 rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-primary rounded-full mt-2 animate-float" />
-        </div>
-      </div>
     </section>
   );
 };
