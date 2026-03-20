@@ -318,6 +318,33 @@ export const Contact = () => {
               </div>
             </Card>
 
+            {/* Resume Card - Entire card clickable */}
+            <a
+              href="/resume.pdf"
+              download
+              className="block"
+            >
+              <Card 
+                className={cn(
+                  "p-6 bg-card hover-glow-border transition-all duration-500 cursor-pointer",
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+                )}
+                style={{ transitionDelay: '0.55s' }}
+              >
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-primary/10 rounded-lg">
+                    <FileDown className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg mb-1">Resume</h3>
+                    <p className="text-muted-foreground">
+                      Click to download my resume
+                    </p>
+                  </div>
+                </div>
+              </Card>
+            </a>
+
             {/* Location Card */}
             <Card 
               className={cn(
