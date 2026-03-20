@@ -40,7 +40,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { Mail, MapPin, Phone, Send, FileDown } from "lucide-react";
 import { z } from "zod";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { useParallaxScroll } from "@/hooks/use-parallax-scroll";
@@ -317,6 +317,33 @@ export const Contact = () => {
                 </div>
               </div>
             </Card>
+
+            {/* Resume Card - Entire card clickable */}
+            <a
+              href="/resume.pdf"
+              download
+              className="block"
+            >
+              <Card 
+                className={cn(
+                  "p-6 bg-card hover-glow-border transition-all duration-500 cursor-pointer",
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
+                )}
+                style={{ transitionDelay: '0.55s' }}
+              >
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-primary/10 rounded-lg">
+                    <FileDown className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-lg mb-1">Resume</h3>
+                    <p className="text-muted-foreground">
+                      Click to download my resume
+                    </p>
+                  </div>
+                </div>
+              </Card>
+            </a>
 
             {/* Location Card */}
             <Card 
