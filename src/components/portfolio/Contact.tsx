@@ -40,7 +40,7 @@ import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
-import { Mail, MapPin, Phone, Send } from "lucide-react";
+import { Mail, MapPin, Phone, Send, FileDown } from "lucide-react";
 import { z } from "zod";
 import { useScrollReveal } from "@/hooks/use-scroll-reveal";
 import { useParallaxScroll } from "@/hooks/use-parallax-scroll";
