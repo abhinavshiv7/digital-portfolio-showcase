@@ -96,6 +96,22 @@ export const Projects = () => {
   /** Project data - featured projects to display */
   const projects = [
     {
+      title: "Cloud-Native Portfolio Application",
+      description: "Full-stack React + TypeScript app with optimized Docker image (<25MB), automated CI/CD via GitHub Actions in under 2 minutes, 100% IaC with Terraform, deployed on Cloud Run with scale-to-zero (~90% cost savings), canary deployments (90/10 split), and Zero-Trust security with 0 production vulnerabilities.",
+      tags: ["React", "TypeScript", "Docker", "Terraform", "Cloud Run", "GitHub Actions", "GCP IAM"],
+      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop",
+      github: "https://github.com/abhinavshiv7",
+      demo: "https://github.com/abhinavshiv7"
+    },
+    {
+      title: "Aperture – AI Video Processing Platform",
+      description: "Cloud-native asynchronous video pipeline with AI transcription (OpenAI Whisper), cost-optimized GKE Spot VMs with auto-scaling, event-driven architecture via Pub/Sub, strict GitOps with ArgoCD, and secured network perimeter with private IPs and Workload Identity.",
+      tags: ["GKE", "Terraform", "ArgoCD", "GitHub Actions", "Cloud SQL", "Pub/Sub", "Docker", "Python"],
+      image: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=800&auto=format&fit=crop",
+      github: "https://github.com/abhinavshiv7",
+      demo: "https://github.com/abhinavshiv7"
+    },
+    {
       title: "FitLife Planner & AI Assistant",
       description: "AI-powered health application delivering personalized fitness plans and real-time health tips using Natural Language Processing",
       tags: ["Python", "NLP", "AI/ML", "Health Tech"],
@@ -111,30 +127,6 @@ export const Projects = () => {
       github: "https://github.com/abhinavshiv7/Smart_Directory_Manager",
       demo: "https://github.com/abhinavshiv7/Smart_Directory_Manager"
     },
-    {
-      title: "Cloud Infrastructure Dashboard",
-      description: "Real-time monitoring dashboard for cloud resources with automated alerts and cost optimization recommendations",
-      tags: ["React", "GCP", "Terraform", "Docker"],
-      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop",
-      github: "#",
-      demo: "#"
-    },
-    {
-      title: "DevOps Pipeline Automation",
-      description: "End-to-end CI/CD pipeline with automated testing, security scanning, and multi-environment deployments",
-      tags: ["GitHub Actions", "Kubernetes", "AWS", "Jenkins"],
-      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&auto=format&fit=crop",
-      github: "#",
-      demo: "#"
-    },
-    {
-      title: "API Gateway & Microservices",
-      description: "Scalable microservices architecture with centralized API gateway, load balancing, and service mesh integration",
-      tags: ["Node.js", "Docker", "Kong", "Redis"],
-      image: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=800&auto=format&fit=crop",
-      github: "#",
-      demo: "#"
-    }
   ];
 
   /** Syncs current slide index with carousel API */
