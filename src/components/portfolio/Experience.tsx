@@ -53,9 +53,8 @@ export const Experience = () => {
       company: "Professional Development",
       icon: Award,
       achievements: [
-        "Google Cloud Associate Cloud Engineer (GCP ACE)",
-        "Certified Kubernetes Administrator (CKA)",
-        "Certified Kubernetes Application Developer (CKAD)",
+        "GCP Cloud Practitioner",
+        "Kubernetes Essentials",
         "AWS Cloud Practitioner",
         "Docker Essentials",
         "Cybersecurity Essentials"
