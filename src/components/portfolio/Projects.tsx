@@ -97,7 +97,7 @@ export const Projects = () => {
   const projects = [
     {
       title: "Cloud-Native Portfolio Application",
-      description: "Full-stack React + TypeScript app with optimized Docker image (<25MB), automated CI/CD via GitHub Actions in under 2 minutes, 100% IaC with Terraform, deployed on Cloud Run with scale-to-zero (~90% cost savings), canary deployments (90/10 split), and Zero-Trust security with 0 production vulnerabilities.",
+      description: "A serverless React + TypeScript portfolio app deployed on Google Cloud Run with a sub-25MB Docker image and scale-to-zero architecture. Features a fully automated CI/CD pipeline via GitHub Actions, Terraform-provisioned infrastructure, canary deployments with auto-rollback, and Zero-Trust IAM security — achieving ~90% cost reduction over traditional hosting.",
       tags: ["React", "TypeScript", "Docker", "Terraform", "Cloud Run", "GitHub Actions", "GCP IAM"],
       image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop",
       github: "https://github.com/abhinavshiv7",
