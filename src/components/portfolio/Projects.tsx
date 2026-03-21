@@ -105,11 +105,11 @@ export const Projects = () => {
     },
     {
       title: "Aperture – AI Video Processing Platform",
-      description: "Cloud-native asynchronous video pipeline with AI transcription (OpenAI Whisper), cost-optimized GKE Spot VMs with auto-scaling, event-driven architecture via Pub/Sub, strict GitOps with ArgoCD, and secured network perimeter with private IPs and Workload Identity.",
+      description: "A cloud-native, event-driven pipeline that automatically transcribes videos and generates subtitles at scale. Built on GKE with Terraform-provisioned infrastructure, it uses Pub/Sub for async job queuing, ArgoCD for GitOps deployment, and OpenAI Whisper for AI-driven transcription — all secured with private networking and Workload Identity on GCP.",
       tags: ["GKE", "Terraform", "ArgoCD", "GitHub Actions", "Cloud SQL", "Pub/Sub", "Docker", "Python"],
       image: "https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=800&auto=format&fit=crop",
-      github: "https://github.com/abhinavshiv7",
-      demo: "https://github.com/abhinavshiv7"
+      github: "https://github.com/abhinavshiv7/Aperture-Cloud-Native-AI-Video-Processing-Platform",
+      demo: "https://github.com/abhinavshiv7/Aperture-Cloud-Native-AI-Video-Processing-Platform"
     },
     {
       title: "FitLife Planner & AI Assistant",
