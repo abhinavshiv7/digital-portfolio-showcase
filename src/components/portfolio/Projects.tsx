@@ -191,7 +191,7 @@ export const Projects = () => {
               {projects.map((project, index) => (
                 <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-4/5 lg:basis-3/5">
                   <div className={cn(
-                    "transition-all duration-500",
+                    "transition-all duration-500 h-full",
                     current === index ? "scale-100 opacity-100" : "scale-90 opacity-40"
                   )}>
                     <Card className="hover:shadow-xl transition-all duration-300 bg-card hover-glow-border overflow-visible rounded-xl h-full flex flex-col">
