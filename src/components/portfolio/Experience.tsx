@@ -54,9 +54,9 @@ export const Experience = () => {
       icon: Award,
       achievements: [
         "GCP Cloud Practitioner",
-        "Kubernetes Essentials",
         "AWS Cloud Practitioner",
         "Docker Essentials",
+        "Kubernetes Essentials",
         "Cybersecurity Essentials"
       ]
     },
