@@ -194,9 +194,9 @@ export const Projects = () => {
                     "transition-all duration-500",
                     current === index ? "scale-100 opacity-100" : "scale-90 opacity-40"
                   )}>
-                    <Card className="hover:shadow-xl transition-all duration-300 bg-card hover-glow-border overflow-visible rounded-xl">
+                    <Card className="hover:shadow-xl transition-all duration-300 bg-card hover-glow-border overflow-visible rounded-xl h-full flex flex-col">
                       {/* Project Image */}
-                      <div className="relative h-48 overflow-hidden rounded-t-xl">
+                      <div className="relative h-48 overflow-hidden rounded-t-xl flex-shrink-0">
                         <img 
                           src={project.image} 
                           alt={project.title}
@@ -206,9 +206,9 @@ export const Projects = () => {
                       </div>
                       
                       {/* Project Details */}
-                      <div className="p-6 space-y-4">
+                      <div className="p-6 space-y-4 flex flex-col flex-1">
                         <h3 className="text-xl font-bold">{project.title}</h3>
-                        <p className="text-muted-foreground">{project.description}</p>
+                        <p className="text-muted-foreground flex-1">{project.description}</p>
                         
                         {/* Technology Tags */}
                         <div className="flex flex-wrap gap-2">
@@ -220,7 +220,7 @@ export const Projects = () => {
                         </div>
 
                         {/* Action Buttons */}
-                        <div className="flex gap-4 pt-4">
+                        <div className="flex gap-4 pt-4 mt-auto">
                           <Button variant="outline" size="sm" asChild>
                             <a href={project.github} target="_blank" rel="noopener noreferrer">
                               <Github className="h-4 w-4 mr-2" />
