@@ -100,8 +100,8 @@ export const Projects = () => {
       description: "A serverless React + TypeScript portfolio app deployed on Google Cloud Run with a sub-25MB Docker image and scale-to-zero architecture. Features a fully automated CI/CD pipeline via GitHub Actions, Terraform-provisioned infrastructure, canary deployments with auto-rollback, and Zero-Trust IAM security — achieving ~90% cost reduction over traditional hosting.",
       tags: ["React", "TypeScript", "Docker", "Terraform", "Cloud Run", "GitHub Actions", "GCP IAM"],
       image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&auto=format&fit=crop",
-      github: "https://github.com/abhinavshiv7",
-      demo: "https://github.com/abhinavshiv7"
+      github: "https://github.com/abhinavshiv7/digital-portfolio-showcase",
+      demo: "https://github.com/abhinavshiv7/digital-portfolio-showcase"
     },
     {
       title: "Aperture – AI Video Processing Platform",
