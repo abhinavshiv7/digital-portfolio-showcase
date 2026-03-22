@@ -89,6 +89,12 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
+    // Escape HTML entities for safe email template insertion
+    const safeName = escapeHtml(name);
+    const safeCompany = company ? escapeHtml(company) : null;
+
+    console.log("Processing contact form submission:", { name: safeName, email, company: safeCompany, whatsapp });
+
     // Save contact to database
     const { error: dbError } = await supabase
       .from("visitor_contacts")
