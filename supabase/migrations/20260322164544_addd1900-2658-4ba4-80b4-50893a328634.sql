@@ -1,0 +1,1 @@
+DROP POLICY IF EXISTS "Anyone can submit contact form" ON public.visitor_contacts;
