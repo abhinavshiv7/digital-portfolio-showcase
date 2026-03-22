@@ -62,13 +62,10 @@ export const Experience = () => {
     },
     {
       title: "Achievements & Recognition",
-      company: "Competitions & Programs",
+      company: "Open-Source & Community",
       icon: Trophy,
       achievements: [
-        "Google STEP Intern 2025 - Selected for Google's prestigious internship program",
-        "UiPath Student Developer Champion - Recognized for automation excellence",
-        "Placed 46 at Global Rank in competitive programming",
-        "NPTEL Cloud Computing Week 12 - Top performer in advanced cloud computing course"
+        "Contributed in Open-Source Drive: Open-Source Contributors Drive 2024, Github Students Club, LPU — September 2024"
       ]
     }
   ];
