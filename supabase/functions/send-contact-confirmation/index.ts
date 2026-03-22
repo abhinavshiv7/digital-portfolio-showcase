@@ -58,16 +58,36 @@ const handler = async (req: Request): Promise<Response> => {
 
     const { name, email, company, whatsapp, message } = validationResult.data;
 
-    // Escape HTML entities for safe email template insertion
-    const safeName = escapeHtml(name);
-    const safeCompany = company ? escapeHtml(company) : null;
-
-    console.log("Processing contact form submission:", { name: safeName, email, company: safeCompany, whatsapp });
-
     // Initialize Supabase client
     const supabaseUrl = Deno.env.get("SUPABASE_URL")!;
     const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const supabase = createClient(supabaseUrl, supabaseKey);
+
+    // Rate limiting: max 5 submissions per email per hour
+    const oneHourAgo = new Date(Date.now() - 60 * 60 * 1000).toISOString();
+    const { count: recentSubmissions, error: countError } = await supabase
+      .from("visitor_contacts")
+      .select("id", { count: "exact", head: true })
+      .eq("email", email)
+      .gte("created_at", oneHourAgo);
+
+    if (countError) {
+      console.error("Rate limit check error:", countError);
+      throw new Error("Rate limit check failed");
+    }
+
+    if ((recentSubmissions ?? 0) >= 5) {
+      return new Response(
+        JSON.stringify({
+          success: false,
+          error: "Too many submissions. Please try again later.",
+        }),
+        {
+          status: 429,
+          headers: { "Content-Type": "application/json", ...corsHeaders },
+        }
+      );
+    }
 
     // Save contact to database
     const { error: dbError } = await supabase
