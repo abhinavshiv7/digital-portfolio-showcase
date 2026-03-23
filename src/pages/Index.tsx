@@ -26,6 +26,7 @@ import { Tools } from "@/components/portfolio/Tools";
 import { Experience } from "@/components/portfolio/Experience";
 import { Education } from "@/components/portfolio/Education";
 import { Contact } from "@/components/portfolio/Contact";
+import { Footer } from "@/components/portfolio/Footer";
 
 const Index = () => {
   return (
@@ -38,6 +39,7 @@ const Index = () => {
       <Experience />
       <Education />
       <Contact />
+      <Footer />
     </div>
   );
 };
