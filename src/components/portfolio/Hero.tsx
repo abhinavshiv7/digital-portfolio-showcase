@@ -177,7 +177,7 @@ export const Hero = () => {
                 className="text-2xl md:text-3xl lg:text-4xl font-normal text-foreground/90 leading-tight opacity-0 animate-text-reveal"
                 style={{ animationDelay: "0.4s" }}
               >
-                Cloud Engineering Student
+                Cloud Engineer
               </h2>
             </div>
 
